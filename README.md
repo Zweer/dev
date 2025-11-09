@@ -68,8 +68,13 @@ dev/
 │   │   ├── security/        # Security, auth, vulnerabilities
 │   │   ├── performance/     # Optimization, caching, monitoring
 │   │   └── documentation/   # Technical writing, API docs
-│   ├── data/                # Data engineering (TODO)
-│   └── writing/             # Content writing (TODO)
+│   ├── data/                # Data engineering
+│   │   └── data_engineer    # ETL, data warehousing, analytics
+│   └── writing/             # Content & creative writing
+│       ├── content_writer   # Blog posts, articles, marketing
+│       ├── narrative_writer # Fiction, storytelling, characters
+│       ├── style_editor     # Remove AI patterns, improve flow
+│       └── warmth_agent     # Add human warmth and empathy
 ├── configs/                 # Common configurations (TODO)
 ├── templates/               # Project templates (TODO)
 └── README.md               # This file
@@ -222,11 +227,14 @@ Orchestrator coordinates execution and validates results
 **Documentation** (`documentation/`):
 - **dev_documentation** - Technical writing, API docs
 
-### Data Engineering (TODO)
-ETL pipelines, data warehousing, analytics
+### Data Engineering (`agents/data/`)
+- **data_engineer** - ETL pipelines, data warehousing, analytics
 
-### Writing (TODO)
-Content writing, documentation, technical writing
+### Writing (`agents/writing/`)
+- **content_writer** - Blog posts, articles, marketing copy
+- **narrative_writer** - Creative fiction, storytelling, character development
+- **style_editor** - Refine writing quality, remove AI patterns, improve flow
+- **warmth_agent** - Add human warmth, empathy, and emotional connection
 
 ## How to Use Agents
 
@@ -327,8 +335,8 @@ To add new agents:
   - [x] Flutter
   - [x] iOS native
   - [x] Android native
-- [ ] Data engineering agents (`agents/data/`)
-- [ ] Writing agents (`agents/writing/`)
+- [x] Data engineering agents (`agents/data/`)
+- [x] Writing agents (`agents/writing/`)
 - [ ] Common configurations (`configs/`)
 - [ ] Project templates (`templates/`)
 - [ ] Orchestrator examples
