@@ -155,15 +155,58 @@ Orchestrator coordinates execution and validates results
 **Database** (`database/`):
 - **dev_database** - Schema design, queries, migrations
 
+### Services (`agents/services/`)
+
+**Lambda** (`lambda/`):
+- **lambda_developer** - AWS Lambda, serverless functions, event handlers
+
+**Microservices** (`microservices/`):
+- **microservices_architect** - Service design, communication patterns, distributed systems
+
+**API** (`api/`):
+- **api_gateway_specialist** - REST, GraphQL, API Gateway, rate limiting
+
+**Messaging** (`messaging/`):
+- **messaging_specialist** - SQS, SNS, EventBridge, event-driven architecture
+
+**Containers** (`containers/`):
+- **container_specialist** - Docker, ECS, EKS, container orchestration
+
+### Infrastructure (`agents/infrastructure/`)
+
+**CDK** (`cdk/`):
+- **cdk_developer** - AWS CDK with TypeScript, stacks, constructs
+
+**Terraform** (`terraform/`):
+- **terraform_developer** - Terraform HCL, modules, state management
+
+**CI/CD** (`cicd/`):
+- **dev_devops** - Deploy, CI/CD, infrastructure
+
+**Observability** (`observability/`):
+- **observability_specialist** - Monitoring, logging, tracing, alerting
+
 ### Design (`agents/design/`)
 
 - **dev_ui** - UI components, design system, styling
 - **dev_ux** - User flows, accessibility, mobile experience
 
-### Infrastructure (`agents/infrastructure/`)
+### Mobile (`agents/mobile/`)
 
-**CI/CD** (`cicd/`):
-- **dev_devops** - Deploy, CI/CD, infrastructure
+**React Native** (`react-native/`):
+- **react_native_developer** - Cross-platform mobile with React Native
+
+**Ionic** (`ionic/`):
+- **ionic_developer** - Hybrid mobile apps with Capacitor
+
+**Flutter** (`flutter/`):
+- **flutter_developer** - Cross-platform mobile with Dart
+
+**iOS** (`ios/`):
+- **ios_developer** - Native iOS with Swift, SwiftUI, UIKit
+
+**Android** (`android/`):
+- **android_developer** - Native Android with Kotlin, Jetpack Compose
 
 ### Quality (`agents/quality/`)
 
@@ -178,12 +221,6 @@ Orchestrator coordinates execution and validates results
 
 **Documentation** (`documentation/`):
 - **dev_documentation** - Technical writing, API docs
-
-### Services (TODO)
-Backend services, Lambda, microservices, messaging, containers
-
-### Mobile (TODO)
-React Native, Ionic, Flutter, iOS, Android native
 
 ### Data Engineering (TODO)
 ETL pipelines, data warehousing, analytics
@@ -274,22 +311,22 @@ To add new agents:
 
 ## Roadmap
 
-- [ ] Services agents (`agents/services/`)
-  - [ ] Lambda development
-  - [ ] Microservices architecture
-  - [ ] API Gateway & REST/GraphQL
-  - [ ] Messaging (SQS, SNS, EventBridge)
-  - [ ] Container orchestration (ECS, EKS)
-- [ ] Infrastructure agents (`agents/infrastructure/`)
-  - [ ] AWS CDK
-  - [ ] Terraform
-  - [ ] Observability (monitoring, logging)
-- [ ] Mobile agents (`agents/mobile/`)
-  - [ ] React Native
-  - [ ] Ionic
-  - [ ] Flutter
-  - [ ] iOS native
-  - [ ] Android native
+- [x] Services agents (`agents/services/`)
+  - [x] Lambda development
+  - [x] Microservices architecture
+  - [x] API Gateway & REST/GraphQL
+  - [x] Messaging (SQS, SNS, EventBridge)
+  - [x] Container orchestration (ECS, EKS)
+- [x] Infrastructure agents (`agents/infrastructure/`)
+  - [x] AWS CDK
+  - [x] Terraform
+  - [x] Observability (monitoring, logging)
+- [x] Mobile agents (`agents/mobile/`)
+  - [x] React Native
+  - [x] Ionic
+  - [x] Flutter
+  - [x] iOS native
+  - [x] Android native
 - [ ] Data engineering agents (`agents/data/`)
 - [ ] Writing agents (`agents/writing/`)
 - [ ] Common configurations (`configs/`)
