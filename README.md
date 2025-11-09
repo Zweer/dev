@@ -38,17 +38,41 @@ The idea is to have an **orchestrator + specialized agents pattern**:
 
 ```
 dev/
-├── agents/              # Specialized AI agents
-│   ├── dev/            # Web development
-│   │   ├── core/       # Frontend, Backend, Database
-│   │   ├── specialized/# API Integration, Reader
-│   │   ├── operations/ # DevOps, Documentation
-│   │   ├── quality/    # Testing, Security, Performance
-│   │   └── design/     # UI, UX
-│   └── writing/        # Writing (TODO)
-├── configs/            # Common configurations (TODO)
-├── templates/          # Project templates (TODO)
-└── README.md          # This file
+├── agents/                    # Specialized AI agents
+│   ├── web/                  # Web full-stack development
+│   │   ├── frontend/         # React, Next.js, client logic
+│   │   ├── backend/          # API routes, Server Actions
+│   │   └── database/         # Schema, queries, migrations
+│   ├── services/             # Backend services (cloud-native)
+│   │   ├── lambda/           # AWS Lambda, serverless functions
+│   │   ├── microservices/    # Microservices architecture
+│   │   ├── api/              # API Gateway, REST, GraphQL
+│   │   ├── messaging/        # SQS, SNS, EventBridge
+│   │   └── containers/       # ECS, EKS, Docker
+│   ├── infrastructure/       # Platform & IaC
+│   │   ├── cdk/             # AWS CDK
+│   │   ├── terraform/       # Terraform
+│   │   ├── cicd/            # CI/CD pipelines
+│   │   └── observability/   # Monitoring, logging
+│   ├── design/              # UI/UX cross-device
+│   │   ├── ui/              # Design systems, components
+│   │   └── ux/              # User flows, accessibility
+│   ├── mobile/              # Mobile development
+│   │   ├── react-native/    # React Native
+│   │   ├── ionic/           # Ionic
+│   │   ├── flutter/         # Flutter
+│   │   ├── ios/             # iOS native
+│   │   └── android/         # Android native
+│   ├── quality/             # Quality & best practices (cross-domain)
+│   │   ├── testing/         # Unit, integration, E2E tests
+│   │   ├── security/        # Security, auth, vulnerabilities
+│   │   ├── performance/     # Optimization, caching, monitoring
+│   │   └── documentation/   # Technical writing, API docs
+│   ├── data/                # Data engineering (TODO)
+│   └── writing/             # Content writing (TODO)
+├── configs/                 # Common configurations (TODO)
+├── templates/               # Project templates (TODO)
+└── README.md               # This file
 ```
 
 ## How It Works
@@ -118,29 +142,54 @@ Orchestrator coordinates execution and validates results
 
 ## Available Agents
 
-### Web Development (`agents/dev/`)
+### Web Development (`agents/web/`)
 
-#### Core
+**Frontend** (`frontend/`):
 - **dev_frontend** - React, Next.js, components, client-side logic
-- **dev_backend** - API, Server Actions, business logic
-- **dev_database** - Schema design, queries, migrations
-
-#### Specialized
-- **dev_api_integration** - External API integrations, scrapers
 - **dev_reader** - Image viewer, document reader, gestures
 
-#### Operations
-- **dev_devops** - Deploy, CI/CD, infrastructure
-- **dev_documentation** - README, API docs, comments
+**Backend** (`backend/`):
+- **dev_backend** - API routes, Server Actions, business logic
+- **dev_api_integration** - External API integrations, scrapers
 
-#### Quality
-- **dev_testing** - Unit, integration, E2E tests
-- **dev_security** - Auth, security, rate limiting
-- **dev_performance** - Optimizations, caching, bundle size
+**Database** (`database/`):
+- **dev_database** - Schema design, queries, migrations
 
-#### Design
+### Design (`agents/design/`)
+
 - **dev_ui** - UI components, design system, styling
 - **dev_ux** - User flows, accessibility, mobile experience
+
+### Infrastructure (`agents/infrastructure/`)
+
+**CI/CD** (`cicd/`):
+- **dev_devops** - Deploy, CI/CD, infrastructure
+
+### Quality (`agents/quality/`)
+
+**Testing** (`testing/`):
+- **dev_testing** - Unit, integration, E2E tests
+
+**Security** (`security/`):
+- **dev_security** - Auth, security, vulnerabilities
+
+**Performance** (`performance/`):
+- **dev_performance** - Optimization, caching, monitoring
+
+**Documentation** (`documentation/`):
+- **dev_documentation** - Technical writing, API docs
+
+### Services (TODO)
+Backend services, Lambda, microservices, messaging, containers
+
+### Mobile (TODO)
+React Native, Ionic, Flutter, iOS, Android native
+
+### Data Engineering (TODO)
+ETL pipelines, data warehousing, analytics
+
+### Writing (TODO)
+Content writing, documentation, technical writing
 
 ## How to Use Agents
 
@@ -225,12 +274,27 @@ To add new agents:
 
 ## Roadmap
 
+- [ ] Services agents (`agents/services/`)
+  - [ ] Lambda development
+  - [ ] Microservices architecture
+  - [ ] API Gateway & REST/GraphQL
+  - [ ] Messaging (SQS, SNS, EventBridge)
+  - [ ] Container orchestration (ECS, EKS)
+- [ ] Infrastructure agents (`agents/infrastructure/`)
+  - [ ] AWS CDK
+  - [ ] Terraform
+  - [ ] Observability (monitoring, logging)
+- [ ] Mobile agents (`agents/mobile/`)
+  - [ ] React Native
+  - [ ] Ionic
+  - [ ] Flutter
+  - [ ] iOS native
+  - [ ] Android native
+- [ ] Data engineering agents (`agents/data/`)
 - [ ] Writing agents (`agents/writing/`)
 - [ ] Common configurations (`configs/`)
 - [ ] Project templates (`templates/`)
 - [ ] Orchestrator examples
-- [ ] Data engineering agents
-- [ ] Mobile development agents
 
 ## License
 
