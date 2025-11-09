@@ -236,13 +236,151 @@ Orchestrator coordinates execution and validates results
 - **style_editor** - Refine writing quality, remove AI patterns, improve flow
 - **warmth_agent** - Add human warmth, empathy, and emotional connection
 
+## CLI Tool
+
+Command-line tool for managing AI agents and orchestrators in your projects.
+
+### Installation
+
+```bash
+npm install -g @zweer/dev
+```
+
+Or use with npx:
+
+```bash
+npx @zweer/dev <command>
+```
+
+### Commands
+
+#### `dev init [name]`
+
+Create an orchestrator in your current project.
+
+```bash
+# Interactive mode
+dev init
+
+# With custom name
+dev init my_orchestrator
+
+# Skip prompts (use defaults)
+dev init --yes
+```
+
+Creates `.cao/agents/<name>.md` with a template orchestrator configured for your project.
+
+**Options:**
+- `-y, --yes` - Skip prompts and use defaults
+
+#### `dev install`
+
+Install CAO (CLI Agent Orchestrator) and all common agents.
+
+```bash
+# Install everything
+dev install
+
+# Install only CAO
+dev install --cao-only
+
+# Install only agents
+dev install --agents-only
+```
+
+This command:
+1. Installs tmux configuration
+2. Installs `uv` package manager
+3. Installs CAO via `uv tool install`
+4. Installs all 30+ common agents from this repository
+
+**Options:**
+- `--cao-only` - Install only CAO prerequisites
+- `--agents-only` - Install only agents (skip CAO)
+
+#### `dev server`
+
+Launch the CAO server.
+
+```bash
+dev server
+```
+
+Starts `cao-server` which enables agent communication and handoff.
+
+#### `dev launch <agent>`
+
+Launch a specific agent.
+
+```bash
+# Launch your orchestrator
+dev launch my_project_orchestrator
+
+# Launch a specialized agent
+dev launch dev_frontend
+```
+
+#### `dev list`
+
+List all available agents with descriptions.
+
+```bash
+dev list
+```
+
+Shows all 30+ agents organized by category.
+
 ## How to Use Agents
 
 ### Setup in Your Project
 
-1. **Create the orchestrator** in your project (e.g. `.q/agents/my_project_orchestrator.md`)
-2. **Configure the context** with project-specific details
-3. **Define delegation logic** for different types of tasks
+```bash
+# In your project directory
+cd my-project
+
+# Create orchestrator
+dev init
+
+# Install CAO and agents
+dev install
+```
+
+### Customize Orchestrator
+
+Edit `.cao/agents/my-project_orchestrator.md` to add:
+- Project-specific context
+- Tech stack details
+- Architecture notes
+- Custom agent selection logic
+
+### Launch and Work
+
+```bash
+# Start CAO server (in one terminal)
+dev server
+
+# Launch your orchestrator (in another terminal)
+dev launch my-project_orchestrator
+```
+
+### Use Agent Handoff
+
+In your orchestrator, delegate to specialized agents:
+
+```typescript
+handoff({
+  agent: "dev_frontend",
+  context: {
+    task: "Create login page component",
+    requirements: {
+      framework: "Next.js 15",
+      styling: "Tailwind CSS",
+      validation: "Zod"
+    }
+  }
+})
+```
 
 ### Delegation Example in Orchestrator
 

@@ -1,0 +1,78 @@
+{
+  "name": "@zweer/dev",
+  "version": "0.0.0",
+  "description": "Shared configurations & AI agents for software projects",
+  "type": "module",
+  "bin": "./cli/index.js",
+  "files": [
+    "dist",
+    "agents",
+    "templates"
+  ],
+  "scripts": {
+    "lint": "concurrently npm:lint:* --prefixColors auto",
+    "lint:format": "biome check --write",
+    "lint:lockfile": "lockfile-lint --path package-lock.json",
+    "lint:engines": "ls-engines",
+    "lint:publish": "publint --strict",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run clean && npm run test:coverage && npm run build && npm run lint && npm run clean",
+    "prepare": "husky",
+    "clean": "rimraf --glob ./{cli,test}/**/*.{d.ts,js} ./vitest*.{d.ts,js}",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "release": "semantic-release"
+  },
+  "engines": {
+    "node": ">= 20.17"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "cao",
+    "cli",
+    "development"
+  ],
+  "author": "Zweer <n.olivieriachille@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^12.0.0",
+    "ora": "^8.1.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/node": "^24.10.0",
+    "@vitest/coverage-v8": "^4.0.8",
+    "concurrently": "^9.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "lockfile-lint": "^4.14.1",
+    "ls-engines": "^0.9.3",
+    "publint": "^0.3.15",
+    "rimraf": "^6.1.0",
+    "semantic-release": "^25.0.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
+  }
+}
