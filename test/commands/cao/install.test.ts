@@ -4,18 +4,18 @@ import {
   executeInstallAgents,
   executeInstallCao,
   installCommand,
-} from '../../cli/commands/install.js';
-import * as agents from '../../cli/utils/agents.js';
-import * as cao from '../../cli/utils/cao.js';
+} from '../../../cli/commands/cao/install.js';
+import * as agents from '../../../cli/utils/agents.js';
+import * as cao from '../../../cli/utils/cao.js';
 
 // Mock cao utilities
-vi.mock('../../cli/utils/cao.js', () => ({
+vi.mock('../../../cli/utils/cao.js', () => ({
   installCao: vi.fn(),
   installAgent: vi.fn(),
 }));
 
 // Mock agents utility
-vi.mock('../../cli/utils/agents.js', () => ({
+vi.mock('../../../cli/utils/agents.js', () => ({
   getAllAgents: vi.fn(),
 }));
 

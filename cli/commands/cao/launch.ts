@@ -1,7 +1,7 @@
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 
-import { launchAgent } from '../utils/cao.js';
+import { launchAgent } from '../../utils/cao.js';
 
 export async function executeLaunch(agentName: string): Promise<void> {
   await launchAgent(agentName);

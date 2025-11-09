@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { groupAgentsByCategory, listCommand } from '../../cli/commands/list.js';
-import type { Agent } from '../../cli/utils/agents.js';
+import { groupAgentsByCategory, listCommand } from '../../../cli/commands/cao/list.js';
+import type { Agent } from '../../../cli/utils/agents.js';
 
 describe('list command', () => {
   describe('command structure', () => {

@@ -5,7 +5,7 @@ import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-import { paths } from '../utils/paths.js';
+import { paths } from '../../utils/paths.js';
 
 export interface OrchestratorConfig {
   name: string;

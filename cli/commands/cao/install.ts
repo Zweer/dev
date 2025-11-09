@@ -2,8 +2,8 @@ import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import ora from 'ora';
 
-import { getAllAgents } from '../utils/agents.js';
-import { installAgent, installCao } from '../utils/cao.js';
+import { getAllAgents } from '../../utils/agents.js';
+import { installAgent, installCao } from '../../utils/cao.js';
 
 export async function executeInstallCao(): Promise<void> {
   await installCao();

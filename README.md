@@ -254,19 +254,21 @@ npx @zweer/dev <command>
 
 ### Commands
 
-#### `dev init [name]`
+All CAO-related commands are under the `cao` subcommand:
+
+#### `dev cao init [name]`
 
 Create an orchestrator in your current project.
 
 ```bash
 # Interactive mode
-dev init
+dev cao init
 
 # With custom name
-dev init my_orchestrator
+dev cao init my_orchestrator
 
 # Skip prompts (use defaults)
-dev init --yes
+dev cao init --yes
 ```
 
 Creates `.cao/agents/<name>.md` with a template orchestrator configured for your project.
@@ -274,19 +276,19 @@ Creates `.cao/agents/<name>.md` with a template orchestrator configured for your
 **Options:**
 - `-y, --yes` - Skip prompts and use defaults
 
-#### `dev install`
+#### `dev cao install`
 
 Install CAO (CLI Agent Orchestrator) and all common agents.
 
 ```bash
 # Install everything
-dev install
+dev cao install
 
 # Install only CAO
-dev install --cao-only
+dev cao install --cao-only
 
 # Install only agents
-dev install --agents-only
+dev cao install --agents-only
 ```
 
 This command:
@@ -299,34 +301,34 @@ This command:
 - `--cao-only` - Install only CAO prerequisites
 - `--agents-only` - Install only agents (skip CAO)
 
-#### `dev server`
+#### `dev cao server`
 
 Launch the CAO server.
 
 ```bash
-dev server
+dev cao server
 ```
 
 Starts `cao-server` which enables agent communication and handoff.
 
-#### `dev launch <agent>`
+#### `dev cao launch <agent>`
 
 Launch a specific agent.
 
 ```bash
 # Launch your orchestrator
-dev launch my_project_orchestrator
+dev cao launch my_project_orchestrator
 
 # Launch a specialized agent
-dev launch dev_frontend
+dev cao launch dev_frontend
 ```
 
-#### `dev list`
+#### `dev cao list`
 
 List all available agents with descriptions.
 
 ```bash
-dev list
+dev cao list
 ```
 
 Shows all 30+ agents organized by category.
@@ -340,10 +342,10 @@ Shows all 30+ agents organized by category.
 cd my-project
 
 # Create orchestrator
-dev init
+dev cao init
 
 # Install CAO and agents
-dev install
+dev cao install
 ```
 
 ### Customize Orchestrator
@@ -358,10 +360,10 @@ Edit `.cao/agents/my-project_orchestrator.md` to add:
 
 ```bash
 # Start CAO server (in one terminal)
-dev server
+dev cao server
 
 # Launch your orchestrator (in another terminal)
-dev launch my-project_orchestrator
+dev cao launch my-project_orchestrator
 ```
 
 ### Use Agent Handoff

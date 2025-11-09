@@ -2,11 +2,11 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { initCommand } from '../../cli/commands/init.js';
-import { installCommand } from '../../cli/commands/install.js';
-import { launchCommand } from '../../cli/commands/launch.js';
-import { listCommand } from '../../cli/commands/list.js';
-import { serverCommand } from '../../cli/commands/server.js';
+import { initCommand } from '../../cli/commands/cao/init.js';
+import { installCommand } from '../../cli/commands/cao/install.js';
+import { launchCommand } from '../../cli/commands/cao/launch.js';
+import { listCommand } from '../../cli/commands/cao/list.js';
+import { serverCommand } from '../../cli/commands/cao/server.js';
 
 // Mock fs/promises for init
 vi.mock('node:fs/promises', () => ({
@@ -35,7 +35,7 @@ vi.mock('../../cli/utils/agents.js', async (importOriginal) => {
   };
 });
 
-describe('commands integration', () => {
+describe('cao commands integration', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -45,7 +45,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        listCommand.parseAsync(['node', 'test'], { from: 'user' }),
+        listCommand.parseAsync(['node', 'test', 'list'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -62,7 +62,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        initCommand.parseAsync(['node', 'test', '--yes'], { from: 'user' }),
+        initCommand.parseAsync(['node', 'test', 'init', '--yes'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -74,7 +74,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        installCommand.parseAsync(['node', 'test'], { from: 'user' }),
+        installCommand.parseAsync(['node', 'test', 'install'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -84,7 +84,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        installCommand.parseAsync(['node', 'test', '--cao-only'], { from: 'user' }),
+        installCommand.parseAsync(['node', 'test', 'install', '--cao-only'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -94,7 +94,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        installCommand.parseAsync(['node', 'test', '--agents-only'], { from: 'user' }),
+        installCommand.parseAsync(['node', 'test', 'install', '--agents-only'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -106,7 +106,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        serverCommand.parseAsync(['node', 'test'], { from: 'user' }),
+        serverCommand.parseAsync(['node', 'test', 'server'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();
@@ -118,7 +118,7 @@ describe('commands integration', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       await expect(
-        launchCommand.parseAsync(['node', 'test', 'dev_frontend'], { from: 'user' }),
+        launchCommand.parseAsync(['node', 'test', 'launch', 'dev_frontend'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();

@@ -1,7 +1,7 @@
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 
-import { type Agent, getAllAgents } from '../utils/agents.js';
+import { type Agent, getAllAgents } from '../../utils/agents.js';
 
 export function groupAgentsByCategory(agents: Agent[]): Record<string, Agent[]> {
   return agents.reduce(

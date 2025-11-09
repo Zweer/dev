@@ -1,7 +1,7 @@
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 
-import { startServer } from '../utils/cao.js';
+import { startServer } from '../../utils/cao.js';
 
 export async function executeServer(): Promise<void> {
   await startServer();

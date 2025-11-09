@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { executeLaunch, launchCommand } from '../../cli/commands/launch.js';
-import * as cao from '../../cli/utils/cao.js';
+import { executeLaunch, launchCommand } from '../../../cli/commands/cao/launch.js';
+import * as cao from '../../../cli/utils/cao.js';
 
 // Mock cao utilities
-vi.mock('../../cli/utils/cao.js', () => ({
+vi.mock('../../../cli/utils/cao.js', () => ({
   launchAgent: vi.fn(),
 }));
 

@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { executeServer, serverCommand } from '../../cli/commands/server.js';
-import * as cao from '../../cli/utils/cao.js';
+import { executeServer, serverCommand } from '../../../cli/commands/cao/server.js';
+import * as cao from '../../../cli/utils/cao.js';
 
 // Mock cao utilities
-vi.mock('../../cli/utils/cao.js', () => ({
+vi.mock('../../../cli/utils/cao.js', () => ({
   startServer: vi.fn(),
 }));
 

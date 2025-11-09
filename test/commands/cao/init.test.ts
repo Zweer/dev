@@ -7,7 +7,7 @@ import {
   getDefaultConfig,
   initCommand,
   type OrchestratorConfig,
-} from '../../cli/commands/init.js';
+} from '../../../cli/commands/cao/init.js';
 
 // Mock fs/promises
 vi.mock('node:fs/promises', () => ({
