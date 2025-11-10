@@ -31,15 +31,12 @@ const execAsync = promisify(exec);
 describe('bootstrap command', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(exec).mockImplementation(
-      (
-        _cmd: string,
-        callback: (error: Error | null, result: { stdout: string; stderr: string }) => void,
-      ) => {
-        callback(null, { stdout: '', stderr: '' });
-        return {} as ReturnType<typeof exec>;
-      },
-    );
+    // biome-ignore lint/suspicious/noExplicitAny: exec has complex overloaded types
+    vi.mocked(exec).mockImplementation((_cmd: any, callback: any) => {
+      callback(null, { stdout: '', stderr: '' });
+      // biome-ignore lint/suspicious/noExplicitAny: mock return type
+      return {} as any;
+    });
   });
 
   afterEach(() => {
