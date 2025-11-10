@@ -5,7 +5,8 @@
   "type": "module",
   "bin": "./cli/index.js",
   "files": [
-    "dist",
+    "cli/**/*.js",
+    "cli/**/*.d.ts",
     "agents",
     "templates"
   ],
