@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/Zweer/dev/compare/v1.2.0...v1.3.0) (2025-11-10)
+
+
+### Features
+
+* **cli:** :sparkles: Added commands to view and uninstall agents ([d131c3a](https://github.com/Zweer/dev/commit/d131c3a7ae5021422d2140283056dbf8bcc43131))
+* **workflows:** :sparkles: Added common worflows and configurations ([f0cfa28](https://github.com/Zweer/dev/commit/f0cfa28955b46aea6bd46e27bae671a2f8e097ef))
+
+
+### Performance Improvements
+
+* **agents:** :sparkles: Added more templates for the orchestrator ([826d41d](https://github.com/Zweer/dev/commit/826d41d5fb72dfdf5a90ef861d5d6f35f16b9513))
+* **cli:** :fire: Removed the `init` command no longer usefull ([3a41558](https://github.com/Zweer/dev/commit/3a4155893ac82e1bc808859169549379a6720b9f))
+
 # [1.2.0](https://github.com/Zweer/dev/compare/v1.1.1...v1.2.0) (2025-11-10)
 
 
