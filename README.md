@@ -622,9 +622,21 @@ To add new agents:
   - [x] Android native
 - [x] Data engineering agents (`agents/data/`)
 - [x] Writing agents (`agents/writing/`)
-- [ ] Common configurations (`configs/`)
-- [ ] Project templates (`templates/`)
-- [ ] Orchestrator examples
+- [x] Common configurations
+  - [x] TypeScript, Biome, Vitest configs
+  - [x] `dev bootstrap` command
+  - [x] `dev setup` command
+- [x] Project templates (`templates/`)
+  - [x] Web app orchestrator
+  - [x] Mobile app orchestrator
+  - [x] Serverless Lambda orchestrator
+  - [x] Microservices orchestrator
+  - [x] Writing project orchestrator
+- [x] CLI tool for agent management
+  - [x] Install/uninstall agents
+  - [x] List agents with status
+  - [x] Create orchestrators from templates
+  - [x] Sync local agents
 
 ## License
 
