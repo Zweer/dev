@@ -17,8 +17,9 @@ describe('cao command', () => {
 
   it('should have subcommands', () => {
     const subcommands = caoCommand.commands.map((cmd) => cmd.name());
-    expect(subcommands).toContain('init');
+    expect(subcommands).toContain('agent');
     expect(subcommands).toContain('install');
+    expect(subcommands).toContain('sync');
     expect(subcommands).toContain('server');
     expect(subcommands).toContain('launch');
     expect(subcommands).toContain('list');

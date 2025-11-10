@@ -1,19 +1,9 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { initCommand } from '../../cli/commands/cao/init.js';
 import { installCommand } from '../../cli/commands/cao/install.js';
 import { launchCommand } from '../../cli/commands/cao/launch.js';
 import { listCommand } from '../../cli/commands/cao/list.js';
 import { serverCommand } from '../../cli/commands/cao/server.js';
-
-// Mock fs/promises for init
-vi.mock('node:fs/promises', () => ({
-  readFile: vi.fn(),
-  writeFile: vi.fn(),
-  mkdir: vi.fn(),
-}));
 
 // Mock cao utilities
 vi.mock('../../cli/utils/cao.js', () => ({
@@ -46,23 +36,6 @@ describe('cao commands integration', () => {
 
       await expect(
         listCommand.parseAsync(['node', 'test', 'list'], { from: 'user' }),
-      ).resolves.not.toThrow();
-
-      consoleSpy.mockRestore();
-    });
-  });
-
-  describe('init command', () => {
-    it('should execute with --yes flag', async () => {
-      const templateContent = '---\nname: {{PROJECT_NAME}}\n---\nContent';
-      vi.mocked(readFile).mockResolvedValue(templateContent);
-      vi.mocked(mkdir).mockResolvedValue(undefined);
-      vi.mocked(writeFile).mockResolvedValue(undefined);
-
-      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-
-      await expect(
-        initCommand.parseAsync(['node', 'test', 'init', '--yes'], { from: 'user' }),
       ).resolves.not.toThrow();
 
       consoleSpy.mockRestore();

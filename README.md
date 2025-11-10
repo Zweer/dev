@@ -360,28 +360,6 @@ dev cao sync
 
 Run this after creating or modifying local agents to install/update them in CAO.
 
-##### `dev cao init [name]`
-
-**Deprecated**: Use `dev cao agent create` instead.
-
-Create an orchestrator in your current project.
-
-```bash
-# Interactive mode
-dev cao init
-
-# With custom name
-dev cao init my_orchestrator
-
-# Skip prompts (use defaults)
-dev cao init --yes
-```
-
-Creates `.cao/agents/<name>.md` with a template orchestrator configured for your project.
-
-**Options:**
-- `-y, --yes` - Skip prompts and use defaults
-
 ##### `dev cao server`
 
 Launch the CAO server.
