@@ -42,13 +42,12 @@ describe('agents utility', () => {
       expect(categories).toContain('quality');
     });
 
-    it('should handle subcategories', async () => {
+    it('should have flat structure without subcategories', async () => {
       const agents = await getAllAgents();
-      const webAgents = agents.filter((a) => a.category === 'web');
-      const withSubcategory = webAgents.find((a) => a.subcategory);
+      const allAgents = agents.filter((a) => a.category);
 
-      expect(withSubcategory).toBeDefined();
-      expect(withSubcategory?.subcategory).toBeDefined();
+      expect(allAgents.length).toBeGreaterThan(0);
+      expect(allAgents.every((a) => !a.subcategory)).toBe(true);
     });
   });
 });
