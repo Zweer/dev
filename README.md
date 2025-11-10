@@ -209,7 +209,7 @@ All agents use the `zweer_<category>_<name>` naming convention for global unique
 
 ## CLI Tool
 
-Command-line tool for managing AI agents and orchestrators in your projects.
+Command-line tool for managing AI agents, orchestrators, and project configurations.
 
 ### Installation
 
@@ -225,9 +225,60 @@ npx @zweer/dev <command>
 
 ### Commands
 
+#### Project Setup
+
+##### `dev bootstrap`
+
+Bootstrap a new npm package with standard configuration.
+
+```bash
+# Interactive mode
+dev bootstrap
+
+# Skip prompts (use defaults)
+dev bootstrap --yes
+```
+
+Creates a complete project structure with:
+- `package.json` with all dependencies and scripts
+- TypeScript configuration (`tsconfig.json`)
+- Biome linter/formatter (`biome.json`)
+- Vitest testing setup (`vitest.config.ts`)
+- Git hooks with Husky and lint-staged
+- EditorConfig (`.editorconfig`)
+- Sample source and test files
+- README template
+
+**Options:**
+- `-y, --yes` - Skip prompts and use defaults
+
+##### `dev setup`
+
+Add standard configuration to an existing project.
+
+```bash
+# Interactive mode - choose what to add
+dev setup
+
+# Add everything
+dev setup --yes
+```
+
+Adds configurations to existing project:
+- Merges dependencies into existing `package.json` (doesn't overwrite)
+- Merges scripts into existing `package.json`
+- Creates missing config files (tsconfig, biome, vitest, etc.)
+- Skips files that already exist
+- Preserves existing values
+
+**Options:**
+- `-y, --yes` - Skip prompts and add all configurations
+
+#### AI Agents (CAO)
+
 All CAO-related commands are under the `cao` subcommand:
 
-#### `dev cao init [name]`
+##### `dev cao init [name]`
 
 Create an orchestrator in your current project.
 
@@ -247,7 +298,7 @@ Creates `.cao/agents/<name>.md` with a template orchestrator configured for your
 **Options:**
 - `-y, --yes` - Skip prompts and use defaults
 
-#### `dev cao install`
+##### `dev cao install`
 
 Install CAO (CLI Agent Orchestrator) and all common agents.
 
@@ -272,7 +323,7 @@ This command:
 - `--cao-only` - Install only CAO prerequisites
 - `--agents-only` - Install only agents (skip CAO)
 
-#### `dev cao server`
+##### `dev cao server`
 
 Launch the CAO server.
 
@@ -282,7 +333,7 @@ dev cao server
 
 Starts `cao-server` which enables agent communication and handoff.
 
-#### `dev cao launch <agent>`
+##### `dev cao launch <agent>`
 
 Launch a specific agent.
 
@@ -291,10 +342,10 @@ Launch a specific agent.
 dev cao launch my_project_orchestrator
 
 # Launch a specialized agent
-dev cao launch dev_frontend
+dev cao launch zweer_web_frontend
 ```
 
-#### `dev cao list`
+##### `dev cao list`
 
 List all available agents with descriptions.
 
