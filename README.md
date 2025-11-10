@@ -38,47 +38,51 @@ The idea is to have an **orchestrator + specialized agents pattern**:
 
 ```
 dev/
-├── agents/                    # Specialized AI agents
-│   ├── web/                  # Web full-stack development
-│   │   ├── frontend/         # React, Next.js, client logic
-│   │   ├── backend/          # API routes, Server Actions
-│   │   └── database/         # Schema, queries, migrations
-│   ├── services/             # Backend services (cloud-native)
-│   │   ├── lambda/           # AWS Lambda, serverless functions
-│   │   ├── microservices/    # Microservices architecture
-│   │   ├── api/              # API Gateway, REST, GraphQL
-│   │   ├── messaging/        # SQS, SNS, EventBridge
-│   │   └── containers/       # ECS, EKS, Docker
-│   ├── infrastructure/       # Platform & IaC
-│   │   ├── cdk/             # AWS CDK
-│   │   ├── terraform/       # Terraform
-│   │   ├── cicd/            # CI/CD pipelines
-│   │   └── observability/   # Monitoring, logging
-│   ├── design/              # UI/UX cross-device
-│   │   ├── ui/              # Design systems, components
-│   │   └── ux/              # User flows, accessibility
-│   ├── mobile/              # Mobile development
-│   │   ├── react-native/    # React Native
-│   │   ├── ionic/           # Ionic
-│   │   ├── flutter/         # Flutter
-│   │   ├── ios/             # iOS native
-│   │   └── android/         # Android native
-│   ├── quality/             # Quality & best practices (cross-domain)
-│   │   ├── testing/         # Unit, integration, E2E tests
-│   │   ├── security/        # Security, auth, vulnerabilities
-│   │   ├── performance/     # Optimization, caching, monitoring
-│   │   └── documentation/   # Technical writing, API docs
-│   ├── data/                # Data engineering
-│   │   └── data_engineer    # ETL, data warehousing, analytics
-│   └── writing/             # Content & creative writing
-│       ├── content_writer   # Blog posts, articles, marketing
-│       ├── narrative_writer # Fiction, storytelling, characters
-│       ├── style_editor     # Remove AI patterns, improve flow
-│       └── warmth_agent     # Add human warmth and empathy
-├── configs/                 # Common configurations (TODO)
-├── templates/               # Project templates (TODO)
-└── README.md               # This file
+├── agents/                              # Specialized AI agents (30 total)
+│   ├── data/                           # Data engineering (1)
+│   │   └── zweer_data_engineer.md
+│   ├── design/                         # UI/UX (2)
+│   │   ├── zweer_ui_designer.md
+│   │   └── zweer_ui_ux.md
+│   ├── infrastructure/                 # Platform & IaC (4)
+│   │   ├── zweer_infra_cdk.md
+│   │   ├── zweer_infra_devops.md
+│   │   ├── zweer_infra_observability.md
+│   │   └── zweer_infra_terraform.md
+│   ├── mobile/                         # Mobile development (5)
+│   │   ├── zweer_mobile_android.md
+│   │   ├── zweer_mobile_flutter.md
+│   │   ├── zweer_mobile_ionic.md
+│   │   ├── zweer_mobile_ios.md
+│   │   └── zweer_mobile_react_native.md
+│   ├── quality/                        # Quality & best practices (4)
+│   │   ├── zweer_qa_documentation.md
+│   │   ├── zweer_qa_performance.md
+│   │   ├── zweer_qa_security.md
+│   │   └── zweer_qa_testing.md
+│   ├── services/                       # Backend services (5)
+│   │   ├── zweer_svc_api_gateway.md
+│   │   ├── zweer_svc_containers.md
+│   │   ├── zweer_svc_lambda.md
+│   │   ├── zweer_svc_messaging.md
+│   │   └── zweer_svc_microservices.md
+│   ├── web/                            # Web full-stack (5)
+│   │   ├── zweer_web_api_integration.md
+│   │   ├── zweer_web_backend.md
+│   │   ├── zweer_web_database.md
+│   │   ├── zweer_web_frontend.md
+│   │   └── zweer_web_reader.md
+│   └── write/                          # Content & creative writing (4)
+│       ├── zweer_write_content.md
+│       ├── zweer_write_narrative.md
+│       ├── zweer_write_style.md
+│       └── zweer_write_warmth.md
+├── cli/                                # CLI tool implementation
+├── templates/                          # Project templates
+└── README.md                          # This file
 ```
+
+All agents follow the naming convention: `zweer_<category>_<name>` for global uniqueness.
 
 ## How It Works
 
@@ -147,94 +151,61 @@ Orchestrator coordinates execution and validates results
 
 ## Available Agents
 
+All agents use the `zweer_<category>_<name>` naming convention for global uniqueness.
+
 ### Web Development (`agents/web/`)
 
-**Frontend** (`frontend/`):
-- **dev_frontend** - React, Next.js, components, client-side logic
-- **dev_reader** - Image viewer, document reader, gestures
-
-**Backend** (`backend/`):
-- **dev_backend** - API routes, Server Actions, business logic
-- **dev_api_integration** - External API integrations, scrapers
-
-**Database** (`database/`):
-- **dev_database** - Schema design, queries, migrations
+- **zweer_web_frontend** - React, Next.js, components, client-side logic
+- **zweer_web_backend** - API routes, Server Actions, business logic
+- **zweer_web_database** - Schema design, queries, migrations
+- **zweer_web_api_integration** - External API integrations, scrapers
+- **zweer_web_reader** - Image viewer, document reader, gestures
 
 ### Services (`agents/services/`)
 
-**Lambda** (`lambda/`):
-- **lambda_developer** - AWS Lambda, serverless functions, event handlers
-
-**Microservices** (`microservices/`):
-- **microservices_architect** - Service design, communication patterns, distributed systems
-
-**API** (`api/`):
-- **api_gateway_specialist** - REST, GraphQL, API Gateway, rate limiting
-
-**Messaging** (`messaging/`):
-- **messaging_specialist** - SQS, SNS, EventBridge, event-driven architecture
-
-**Containers** (`containers/`):
-- **container_specialist** - Docker, ECS, EKS, container orchestration
+- **zweer_svc_lambda** - AWS Lambda, serverless functions, event handlers
+- **zweer_svc_microservices** - Service design, communication patterns, distributed systems
+- **zweer_svc_api_gateway** - REST, GraphQL, API Gateway, rate limiting
+- **zweer_svc_messaging** - SQS, SNS, EventBridge, event-driven architecture
+- **zweer_svc_containers** - Docker, ECS, EKS, container orchestration
 
 ### Infrastructure (`agents/infrastructure/`)
 
-**CDK** (`cdk/`):
-- **cdk_developer** - AWS CDK with TypeScript, stacks, constructs
-
-**Terraform** (`terraform/`):
-- **terraform_developer** - Terraform HCL, modules, state management
-
-**CI/CD** (`cicd/`):
-- **dev_devops** - Deploy, CI/CD, infrastructure
-
-**Observability** (`observability/`):
-- **observability_specialist** - Monitoring, logging, tracing, alerting
+- **zweer_infra_cdk** - AWS CDK with TypeScript, stacks, constructs
+- **zweer_infra_terraform** - Terraform HCL, modules, state management
+- **zweer_infra_devops** - Deploy, CI/CD, infrastructure
+- **zweer_infra_observability** - Monitoring, logging, tracing, alerting
 
 ### Design (`agents/design/`)
 
-- **dev_ui** - UI components, design system, styling
-- **dev_ux** - User flows, accessibility, mobile experience
+- **zweer_ui_designer** - UI components, design system, styling
+- **zweer_ui_ux** - User flows, accessibility, mobile experience
 
 ### Mobile (`agents/mobile/`)
 
-**React Native** (`react-native/`):
-- **react_native_developer** - Cross-platform mobile with React Native
-
-**Ionic** (`ionic/`):
-- **ionic_developer** - Hybrid mobile apps with Capacitor
-
-**Flutter** (`flutter/`):
-- **flutter_developer** - Cross-platform mobile with Dart
-
-**iOS** (`ios/`):
-- **ios_developer** - Native iOS with Swift, SwiftUI, UIKit
-
-**Android** (`android/`):
-- **android_developer** - Native Android with Kotlin, Jetpack Compose
+- **zweer_mobile_react_native** - Cross-platform mobile with React Native
+- **zweer_mobile_ionic** - Hybrid mobile apps with Capacitor
+- **zweer_mobile_flutter** - Cross-platform mobile with Dart
+- **zweer_mobile_ios** - Native iOS with Swift, SwiftUI, UIKit
+- **zweer_mobile_android** - Native Android with Kotlin, Jetpack Compose
 
 ### Quality (`agents/quality/`)
 
-**Testing** (`testing/`):
-- **dev_testing** - Unit, integration, E2E tests
-
-**Security** (`security/`):
-- **dev_security** - Auth, security, vulnerabilities
-
-**Performance** (`performance/`):
-- **dev_performance** - Optimization, caching, monitoring
-
-**Documentation** (`documentation/`):
-- **dev_documentation** - Technical writing, API docs
+- **zweer_qa_testing** - Unit, integration, E2E tests
+- **zweer_qa_security** - Auth, security, vulnerabilities
+- **zweer_qa_performance** - Optimization, caching, monitoring
+- **zweer_qa_documentation** - Technical writing, API docs
 
 ### Data Engineering (`agents/data/`)
-- **data_engineer** - ETL pipelines, data warehousing, analytics
 
-### Writing (`agents/writing/`)
-- **content_writer** - Blog posts, articles, marketing copy
-- **narrative_writer** - Creative fiction, storytelling, character development
-- **style_editor** - Refine writing quality, remove AI patterns, improve flow
-- **warmth_agent** - Add human warmth, empathy, and emotional connection
+- **zweer_data_engineer** - ETL pipelines, data warehousing, analytics
+
+### Writing (`agents/write/`)
+
+- **zweer_write_content** - Blog posts, articles, marketing copy
+- **zweer_write_narrative** - Creative fiction, storytelling, character development
+- **zweer_write_style** - Refine writing quality, remove AI patterns, improve flow
+- **zweer_write_warmth** - Add human warmth, empathy, and emotional connection
 
 ## CLI Tool
 
@@ -372,7 +343,7 @@ In your orchestrator, delegate to specialized agents:
 
 ```typescript
 handoff({
-  agent: "dev_frontend",
+  agent: "zweer_web_frontend",
   context: {
     task: "Create login page component",
     requirements: {
@@ -390,31 +361,31 @@ handoff({
 ### Agent Selection Guide
 
 **For UI/UX Tasks**:
-- `dev_ux` → User flows, accessibility, mobile experience
-- `dev_ui` → Components, styling, design system
-- `dev_frontend` → React components, pages, client logic
+- `zweer_ui_ux` → User flows, accessibility, mobile experience
+- `zweer_ui_designer` → Components, styling, design system
+- `zweer_web_frontend` → React components, pages, client logic
 
 **For Backend Tasks**:
-- `dev_backend` → API routes, Server Actions, business logic
-- `dev_database` → Schema design, queries, migrations
-- `dev_api_integration` → External integrations
+- `zweer_web_backend` → API routes, Server Actions, business logic
+- `zweer_web_database` → Schema design, queries, migrations
+- `zweer_web_api_integration` → External integrations
 
 **For Quality Tasks**:
-- `dev_testing` → Automated tests
-- `dev_security` → Security and auth
-- `dev_performance` → Optimizations
+- `zweer_qa_testing` → Automated tests
+- `zweer_qa_security` → Security and auth
+- `zweer_qa_performance` → Optimizations
 
 ### Task Breakdown Example
 
 **User**: "Create login page"
 
 **Orchestrator**:
-1. `dev_ux` → Design authentication flow
-2. `dev_ui` → Form components and UI
-3. `dev_backend` → Setup Auth.js and session management
-4. `dev_database` → Users table and queries
-5. `dev_security` → CSRF protection and validation
-6. `dev_testing` → Test complete flow
+1. `zweer_ui_ux` → Design authentication flow
+2. `zweer_ui_designer` → Form components and UI
+3. `zweer_web_backend` → Setup Auth.js and session management
+4. `zweer_web_database` → Users table and queries
+5. `zweer_qa_security` → CSRF protection and validation
+6. `zweer_qa_testing` → Test complete flow
 ```
 
 ### Providing Context to Agents
