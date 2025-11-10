@@ -1,4 +1,4 @@
-# dev - Shared Configurations & AI Agents
+# @zweer/dev - Shared Configurations & AI Agents
 
 Central repository of reusable configurations and specialized AI agents for software projects.
 
