@@ -38,12 +38,13 @@ export const installCommand = new Command()
     // Install CAO
     if (!installAgentsOnly) {
       const spinner = ora('Installing CAO prerequisites...').start();
+      spinner.stop();
 
       try {
         await executeInstallCao();
-        spinner.succeed(chalk.green('CAO installed successfully'));
+        console.log(chalk.green('✔ CAO installed successfully'));
       } catch (error) {
-        spinner.fail(chalk.red('Failed to install CAO'));
+        console.error(chalk.red('✖ Failed to install CAO'));
         console.error(error);
         process.exit(1);
       }
@@ -52,14 +53,14 @@ export const installCommand = new Command()
     // Install agents
     if (!installCaoOnly) {
       const agents = await getAllAgents();
-      const spinner = ora(`Installing ${agents.length} agents...`).start();
+      console.log(chalk.cyan(`Installing ${agents.length} agents...`));
 
       const { installed, failed } = await executeInstallAgents();
 
       if (failed === 0) {
-        spinner.succeed(chalk.green(`All ${installed} agents installed successfully`));
+        console.log(chalk.green(`✔ All ${installed} agents installed successfully`));
       } else {
-        spinner.warn(chalk.yellow(`Installed ${installed} agents, ${failed} failed`));
+        console.log(chalk.yellow(`⚠ Installed ${installed} agents, ${failed} failed`));
       }
     }
 
