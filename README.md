@@ -387,10 +387,42 @@ dev cao launch zweer_web_frontend
 List all available agents with descriptions.
 
 ```bash
+# List all agents with installation status
 dev cao list
+
+# List only installed agents
+dev cao list --installed
 ```
 
-Shows all 30+ agents organized by category.
+Shows all 30+ agents organized by category with installation status indicators:
+- ✓ = Installed
+- ○ = Not installed
+
+**Options:**
+- `--installed` - Show only installed agents
+
+##### `dev cao status`
+
+Show installation status summary.
+
+```bash
+dev cao status
+```
+
+Displays:
+- Number of installed agents
+- Number of not installed agents
+- List of agents that are not installed
+
+##### `dev cao uninstall <agent>`
+
+Uninstall a specific agent.
+
+```bash
+dev cao uninstall zweer_web_frontend
+```
+
+Removes the agent from CAO's agent directory (`~/.aws/cli-agent-orchestrator/agent-context/`).
 
 ## How to Use Agents
 

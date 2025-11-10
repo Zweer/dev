@@ -2,6 +2,7 @@ import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 
 import { type Agent, getAllAgents } from '../../utils/agents.js';
+import { getInstalledAgents } from '../../utils/cao.js';
 
 export function groupAgentsByCategory(agents: Agent[]): Record<string, Agent[]> {
   return agents.reduce(
@@ -19,21 +20,33 @@ export function groupAgentsByCategory(agents: Agent[]): Record<string, Agent[]> 
 export const listCommand = new Command()
   .name('list')
   .description('List all available agents')
-  .action(async () => {
+  .option('--installed', 'Show only installed agents')
+  .action(async (options) => {
     const agents = await getAllAgents();
+    const installed = await getInstalledAgents();
+    const installedSet = new Set(installed);
 
-    console.log(chalk.bold('\n📦 Available Agents:\n'));
+    const filtered = options.installed ? agents.filter((a) => installedSet.has(a.name)) : agents;
 
-    const grouped = groupAgentsByCategory(agents);
+    console.log(chalk.bold(`\n📦 ${options.installed ? 'Installed' : 'Available'} Agents:\n`));
+
+    const grouped = groupAgentsByCategory(filtered);
 
     for (const [category, categoryAgents] of Object.entries(grouped)) {
       console.log(chalk.cyan(`\n${category}:`));
 
       for (const agent of categoryAgents) {
+        const isInstalled = installedSet.has(agent.name);
+        const status = isInstalled ? chalk.green('✓') : chalk.gray('○');
         const desc = agent.description ? chalk.gray(` - ${agent.description}`) : '';
-        console.log(`  ${chalk.green(agent.name)}${desc}`);
+        console.log(`  ${status} ${chalk.green(agent.name)}${desc}`);
       }
     }
 
-    console.log(chalk.gray(`\nTotal: ${agents.length} agents\n`));
+    const installedCount = filtered.filter((a) => installedSet.has(a.name)).length;
+    console.log(
+      chalk.gray(
+        `\nTotal: ${filtered.length} agents (${installedCount} installed, ${filtered.length - installedCount} available)\n`,
+      ),
+    );
   });

@@ -11,6 +11,8 @@ vi.mock('../../cli/utils/cao.js', () => ({
   installAgent: vi.fn().mockResolvedValue(undefined),
   launchAgent: vi.fn().mockResolvedValue(undefined),
   startServer: vi.fn().mockResolvedValue(undefined),
+  getInstalledAgents: vi.fn().mockResolvedValue(['agent1']),
+  uninstallAgent: vi.fn().mockResolvedValue(undefined),
 }));
 
 // Mock agents utility

@@ -23,6 +23,11 @@ vi.mock('node:child_process', () => ({
   }),
 }));
 
+vi.mock('node:fs/promises', () => ({
+  readdir: vi.fn().mockResolvedValue(['agent1.md', 'agent2.md', 'not-an-agent.txt']),
+  unlink: vi.fn().mockResolvedValue(undefined),
+}));
+
 describe('cao utility', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -80,6 +85,36 @@ describe('cao utility', () => {
     it('should return a promise', () => {
       const result = cao.startServer();
       expect(result).toBeInstanceOf(Promise);
+    });
+  });
+
+  describe('getInstalledAgents', () => {
+    it('should return list of installed agents', async () => {
+      const agents = await cao.getInstalledAgents();
+      expect(agents).toEqual(['agent1', 'agent2']);
+    });
+
+    it('should filter out non-md files', async () => {
+      const agents = await cao.getInstalledAgents();
+      expect(agents).not.toContain('not-an-agent');
+    });
+
+    it('should return empty array on error', async () => {
+      const { readdir } = await import('node:fs/promises');
+      vi.mocked(readdir).mockRejectedValueOnce(new Error('Directory not found'));
+
+      const agents = await cao.getInstalledAgents();
+      expect(agents).toEqual([]);
+    });
+  });
+
+  describe('uninstallAgent', () => {
+    it('should call unlink with correct path', async () => {
+      const { unlink } = await import('node:fs/promises');
+
+      await cao.uninstallAgent('test_agent');
+
+      expect(unlink).toHaveBeenCalledWith(expect.stringContaining('test_agent.md'));
     });
   });
 });

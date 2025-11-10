@@ -1,7 +1,12 @@
 import { exec, spawn } from 'node:child_process';
+import { readdir, unlink } from 'node:fs/promises';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { promisify } from 'node:util';
 
 const execAsync = promisify(exec);
+
+const CAO_AGENT_DIR = join(homedir(), '.aws', 'cli-agent-orchestrator', 'agent-context');
 
 export async function runCommand(command: string): Promise<{ stdout: string; stderr: string }> {
   return execAsync(command);
@@ -51,4 +56,17 @@ export async function launchAgent(agentName: string): Promise<void> {
 
 export async function startServer(): Promise<void> {
   await runInteractiveCommand('cao-server');
+}
+
+export async function getInstalledAgents(): Promise<string[]> {
+  try {
+    const files = await readdir(CAO_AGENT_DIR);
+    return files.filter((f) => f.endsWith('.md')).map((f) => f.replace('.md', ''));
+  } catch {
+    return [];
+  }
+}
+
+export async function uninstallAgent(agentName: string): Promise<void> {
+  await unlink(join(CAO_AGENT_DIR, `${agentName}.md`));
 }

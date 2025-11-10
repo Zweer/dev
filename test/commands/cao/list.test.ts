@@ -1,9 +1,25 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('../../../cli/utils/agents.js', () => ({
+  getAllAgents: vi.fn().mockResolvedValue([
+    { name: 'agent1', path: '/path/1', category: 'web' },
+    { name: 'agent2', path: '/path/2', category: 'services' },
+    { name: 'agent3', path: '/path/3', category: 'web' },
+  ]),
+}));
+
+vi.mock('../../../cli/utils/cao.js', () => ({
+  getInstalledAgents: vi.fn().mockResolvedValue(['agent1', 'agent3']),
+}));
 
 import { groupAgentsByCategory, listCommand } from '../../../cli/commands/cao/list.js';
 import type { Agent } from '../../../cli/utils/agents.js';
 
 describe('list command', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   describe('command structure', () => {
     it('should be defined', () => {
       expect(listCommand).toBeDefined();
@@ -15,6 +31,35 @@ describe('list command', () => {
 
     it('should have description', () => {
       expect(listCommand.description()).toBe('List all available agents');
+    });
+  });
+
+  describe('command execution', () => {
+    it('should list all agents with status', async () => {
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+      await listCommand.parseAsync(['node', 'test'], { from: 'user' });
+
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Available Agents'));
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('agent1'));
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('agent2'));
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('2 installed'));
+
+      consoleSpy.mockRestore();
+    });
+
+    it('should filter installed agents with --installed flag', async () => {
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+      await listCommand.parseAsync(['node', 'test', '--installed'], { from: 'user' });
+
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Installed Agents'));
+      const calls = consoleSpy.mock.calls.map((call) => call[0]).join('\n');
+      expect(calls).toContain('agent1');
+      expect(calls).toContain('agent3');
+      expect(calls).not.toContain('agent2');
+
+      consoleSpy.mockRestore();
     });
   });
 
