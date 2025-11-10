@@ -278,7 +278,91 @@ Adds configurations to existing project:
 
 All CAO-related commands are under the `cao` subcommand:
 
+##### `dev cao install`
+
+Install CAO (CLI Agent Orchestrator) and all global agents.
+
+```bash
+# Install everything
+dev cao install
+
+# Install only CAO
+dev cao install --cao-only
+
+# Install only agents
+dev cao install --agents-only
+```
+
+This command:
+1. Installs tmux configuration
+2. Installs `uv` package manager
+3. Installs CAO via `uv tool install`
+4. Installs all 30+ global agents (zweer_*) from this repository
+
+**Options:**
+- `--cao-only` - Install only CAO prerequisites
+- `--agents-only` - Install only agents (skip CAO)
+
+##### `dev cao agent create [name]`
+
+Create a new local agent in your project.
+
+```bash
+# Interactive mode
+dev cao agent create
+
+# With custom name
+dev cao agent create my_orchestrator
+
+# With template
+dev cao agent create db_specialist --template specialist
+
+# Skip prompts (use defaults)
+dev cao agent create my_agent --yes
+```
+
+Creates `.cao/agents/<name>.md` with a template agent configured for your project.
+
+**Options:**
+- `-t, --template <template>` - Template to use (orchestrator, specialist)
+- `-y, --yes` - Skip prompts and use defaults
+
+##### `dev cao agent list`
+
+List all local agents in `.cao/agents/`.
+
+```bash
+dev cao agent list
+```
+
+##### `dev cao agent remove <name>`
+
+Remove a local agent.
+
+```bash
+# With confirmation prompt
+dev cao agent remove my_agent
+
+# Skip confirmation
+dev cao agent remove my_agent --yes
+```
+
+**Options:**
+- `-y, --yes` - Skip confirmation
+
+##### `dev cao sync`
+
+Sync (install/update) all local agents from `.cao/agents/`.
+
+```bash
+dev cao sync
+```
+
+Run this after creating or modifying local agents to install/update them in CAO.
+
 ##### `dev cao init [name]`
+
+**Deprecated**: Use `dev cao agent create` instead.
 
 Create an orchestrator in your current project.
 
@@ -297,31 +381,6 @@ Creates `.cao/agents/<name>.md` with a template orchestrator configured for your
 
 **Options:**
 - `-y, --yes` - Skip prompts and use defaults
-
-##### `dev cao install`
-
-Install CAO (CLI Agent Orchestrator) and all common agents.
-
-```bash
-# Install everything
-dev cao install
-
-# Install only CAO
-dev cao install --cao-only
-
-# Install only agents
-dev cao install --agents-only
-```
-
-This command:
-1. Installs tmux configuration
-2. Installs `uv` package manager
-3. Installs CAO via `uv tool install`
-4. Installs all 30+ common agents from this repository
-
-**Options:**
-- `--cao-only` - Install only CAO prerequisites
-- `--agents-only` - Install only agents (skip CAO)
 
 ##### `dev cao server`
 
@@ -363,20 +422,29 @@ Shows all 30+ agents organized by category.
 # In your project directory
 cd my-project
 
-# Create orchestrator
-dev cao init
-
-# Install CAO and agents
+# Install CAO and global agents (zweer_*)
 dev cao install
+
+# Create orchestrator
+dev cao agent create my_orchestrator
+
+# Create specialized agents for your project
+dev cao agent create db_specialist --template specialist
+dev cao agent create api_expert --template specialist
+
+# Sync all local agents
+dev cao sync
 ```
 
-### Customize Orchestrator
+### Customize Agents
 
-Edit `.cao/agents/my-project_orchestrator.md` to add:
+Edit agents in `.cao/agents/` to add:
 - Project-specific context
 - Tech stack details
 - Architecture notes
-- Custom agent selection logic
+- Custom logic and tools
+
+After editing, run `dev cao sync` to update them in CAO.
 
 ### Launch and Work
 
@@ -385,7 +453,23 @@ Edit `.cao/agents/my-project_orchestrator.md` to add:
 dev cao server
 
 # Launch your orchestrator (in another terminal)
-dev cao launch my-project_orchestrator
+dev cao launch my_orchestrator
+
+# Or launch a specialized agent
+dev cao launch db_specialist
+```
+
+### Managing Local Agents
+
+```bash
+# List all local agents
+dev cao agent list
+
+# Remove an agent
+dev cao agent remove old_agent
+
+# Sync after modifications
+dev cao sync
 ```
 
 ### Use Agent Handoff
