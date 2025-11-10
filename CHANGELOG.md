@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Zweer/dev/compare/v1.0.1...v1.0.2) (2025-11-10)
+
+
+### Performance Improvements
+
+* 📝 Forcing another deploy ([8e3cf36](https://github.com/Zweer/dev/commit/8e3cf36f3b4a1174a887e8d2cda86db9507ece1d))
+
 ## [1.0.1](https://github.com/Zweer/dev/compare/v1.0.0...v1.0.1) (2025-11-10)
 
 
