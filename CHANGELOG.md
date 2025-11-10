@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/Zweer/dev/compare/v1.0.3...v1.1.0) (2025-11-10)
+
+
+### Bug Fixes
+
+* **cli:** Fixed the cli interactivity ([8b7f1ea](https://github.com/Zweer/dev/commit/8b7f1ea763eb95895101aeea3eb6f1616b1fb2bd))
+
+
+### Features
+
+* **cli:** :sparkles: Added the package lint also to `bootstrap` and `setup` ([7aecdf7](https://github.com/Zweer/dev/commit/7aecdf74d6a1c6e8a9c9c5597d149154ff69c7e7))
+
 ## [1.0.3](https://github.com/Zweer/dev/compare/v1.0.2...v1.0.3) (2025-11-10)
 
 
