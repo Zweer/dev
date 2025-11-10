@@ -2,36 +2,26 @@
   "name": "@zweer/dev",
   "version": "1.0.3",
   "description": "Shared configurations & AI agents for software projects",
-  "type": "module",
-  "bin": "./cli/index.js",
+  "keywords": [
+    "ai",
+    "agents",
+    "cao",
+    "cli",
+    "development"
+  ],
+  "homepage": "https://github.com/Zweer/dev#readme",
+  "bugs": {
+    "url": "https://github.com/Zweer/dev/issues"
+  },
+  "license": "MIT",
+  "author": "Zweer <n.olivieriachille@gmail.com>",
   "files": [
     "cli/**/*.js",
     "cli/**/*.d.ts",
     "agents",
     "templates"
   ],
-  "scripts": {
-    "lint": "concurrently npm:lint:* --prefixColors auto",
-    "lint:format": "biome check --write",
-    "lint:lockfile": "lockfile-lint --path package-lock.json",
-    "lint:engines": "ls-engines",
-    "lint:publish": "publint --strict",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "check": "npm run clean && npm run test:coverage && npm run build && npm run lint && npm run clean",
-    "prepare": "[ \"$CI\" = \"true\" ] || [ \"$GITHUB_ACTIONS\" = \"true\" ] && echo 'Skipping husky' && exit 0 || husky",
-    "clean": "rimraf --glob ./{cli,test}/**/*.{d.ts,js} ./vitest*.{d.ts,js}",
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "release": "semantic-release"
-  },
-  "engines": {
-    "node": ">= 20.17"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
+  "bin": "./cli/index.js",
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -42,19 +32,27 @@
       "@semantic-release/git"
     ]
   },
-  "keywords": [
-    "ai",
-    "agents",
-    "cao",
-    "cli",
-    "development"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Zweer/dev.git"
   },
-  "author": "Zweer <n.olivieriachille@gmail.com>",
-  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "lint": "concurrently npm:lint:* --prefixColors auto",
+    "lint:format": "biome check --write",
+    "lint:lockfile": "lockfile-lint --path package-lock.json",
+    "lint:engines": "ls-engines",
+    "lint:package": "npmPkgJsonLint .",
+    "lint:publish": "publint --strict",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run clean && npm run test:coverage && npm run build && npm run lint && npm run clean",
+    "prepare": "[ \"$CI\" = \"true\" ] || [ \"$GITHUB_ACTIONS\" = \"true\" ] && echo 'Skipping husky' && exit 0 || husky",
+    "clean": "rimraf --glob ./{cli,test}/**/*.{d.ts,js} ./vitest*.{d.ts,js}",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "release": "semantic-release"
+  },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
     "chalk": "^5.3.0",
@@ -74,10 +72,19 @@
     "lint-staged": "^16.2.6",
     "lockfile-lint": "^4.14.1",
     "ls-engines": "^0.9.3",
+    "npm-package-json-lint": "^9.0.0",
+    "npm-package-json-lint-config-default": "^8.0.1",
     "publint": "^0.3.15",
     "rimraf": "^6.1.0",
     "semantic-release": "^25.0.2",
     "typescript": "^5.9.3",
     "vitest": "^4.0.8"
+  },
+  "engines": {
+    "node": ">= 20.17"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
