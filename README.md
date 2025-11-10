@@ -19,6 +19,7 @@ Central repository of reusable configurations and specialized AI agents for soft
 - [Benefits of This Approach](#benefits-of-this-approach)
 - [Contributing](#contributing)
 - [Roadmap](#roadmap)
+- [CI/CD](#cicd)
 - [License](#license)
 
 ## Project Purpose
@@ -637,6 +638,198 @@ To add new agents:
   - [x] List agents with status
   - [x] Create orchestrators from templates
   - [x] Sync local agents
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment. All workflows are **reusable** and can be used in other projects.
+
+### Available Workflows
+
+- `ci.yml` - Test, build, and lint (reusable base workflow)
+- `pr.yml` - Pull request checks (includes CI + validation)
+- `npm.yml` - Release and publish to npm
+- `security.yml` - Security audit
+- `dependabot-auto-merge.yml` - Auto-merge Dependabot PRs
+
+### How to Use in Other Projects
+
+#### Option 1: Call Workflows from This Repository
+
+Create workflows in your project that call these reusable workflows:
+
+**`.github/workflows/pr.yml`** in your project:
+```yaml
+name: PR
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pr:
+    uses: zweer/dev/.github/workflows/pr.yml@main
+```
+
+**`.github/workflows/release.yml`** in your project:
+```yaml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    uses: zweer/dev/.github/workflows/npm.yml@main
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+**`.github/workflows/security.yml`** in your project:
+```yaml
+name: Security
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    uses: zweer/dev/.github/workflows/security.yml@main
+```
+
+#### Option 2: Copy Workflows to Your Project
+
+If you prefer to have full control, copy the workflow files to your project's `.github/workflows/` directory.
+
+**Note**: If you copy `pr.yml` or `npm.yml`, you'll also need to copy `ci.yml` since they depend on it.
+
+### Workflow Dependencies
+
+```
+pr.yml
+  └── ci.yml (required)
+
+npm.yml
+  └── ci.yml (required)
+
+security.yml (standalone)
+
+dependabot-auto-merge.yml (standalone)
+```
+
+### Customization
+
+**Using a Specific Version**
+
+Instead of `@main`, you can pin to a specific version:
+
+```yaml
+uses: zweer/dev/.github/workflows/pr.yml@v1.2.0
+```
+
+**Overriding CI Workflow**
+
+If you need custom CI steps:
+
+1. Copy `ci.yml` to your project
+2. Modify it as needed
+3. Update `pr.yml` and `npm.yml` to use your local `ci.yml`:
+
+```yaml
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml  # Use local version
+```
+
+### Complete Setup Example
+
+For a typical npm package, create these files in your project:
+
+**`.github/workflows/pr.yml`**:
+```yaml
+name: PR
+on:
+  pull_request:
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  pr:
+    uses: zweer/dev/.github/workflows/pr.yml@main
+```
+
+**`.github/workflows/release.yml`**:
+```yaml
+name: Release
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+jobs:
+  release:
+    uses: zweer/dev/.github/workflows/npm.yml@main
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+**`.github/dependabot.yml`**:
+```yaml
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+```
+
+That's it! Your project now has:
+- ✅ Automated testing on PRs
+- ✅ Automated releases with semantic-release
+- ✅ Automated dependency updates
+- ✅ PR title validation
+
+### Dependabot
+
+Automated dependency updates configured in `.github/dependabot.yml`:
+- **npm dependencies**: Weekly updates on Mondays
+- **GitHub Actions**: Weekly updates on Mondays
+- Groups patch/minor updates together
+- Separate groups for dev and production dependencies
+
+### Required Secrets
+
+For the workflows to function properly, configure these secrets in your GitHub repository:
+
+- `NPM_TOKEN` - npm authentication token for publishing packages
+
+### Branch Protection
+
+Recommended branch protection rules for `main`:
+
+- Require pull request reviews before merging
+- Require status checks to pass (Test & Lint from CI workflow)
+- Require branches to be up to date before merging
+- Require conversation resolution before merging
+- Do not allow bypassing the above settings
 
 ## License
 
