@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Zweer/dev/compare/v1.1.1...v1.2.0) (2025-11-10)
+
+
+### Features
+
+* **cli:** :sparkles: Added the agent CRUD ([e7b3e4a](https://github.com/Zweer/dev/commit/e7b3e4a59503aefe064451a9738a4fccde92f48a))
+
 ## [1.1.1](https://github.com/Zweer/dev/compare/v1.1.0...v1.1.1) (2025-11-10)
 
 
