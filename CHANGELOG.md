@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Zweer/dev/compare/v1.1.0...v1.1.1) (2025-11-10)
+
+
+### Bug Fixes
+
+* **cli:** :bug: Fixed the interactivity of the setup ([6fd3626](https://github.com/Zweer/dev/commit/6fd36264d1913ce09e5e6304aa0e0ffe89c458be))
+
 # [1.1.0](https://github.com/Zweer/dev/compare/v1.0.3...v1.1.0) (2025-11-10)
 
 
