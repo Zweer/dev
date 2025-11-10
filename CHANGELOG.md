@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Zweer/dev/compare/v1.0.0...v1.0.1) (2025-11-10)
+
+
+### Performance Improvements
+
+* :memo: Updating doc with proper name ([0f96dfa](https://github.com/Zweer/dev/commit/0f96dfa30449569bf1dbbbfad90021a231cd2050))
+
 # 1.0.0 (2025-11-10)
 
 
