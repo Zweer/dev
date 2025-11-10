@@ -12,7 +12,7 @@ describe('CLI structure', () => {
   });
 
   it('should have orchestrator template', () => {
-    const templatePath = join(paths.templates, 'orchestrator.md');
+    const templatePath = join(paths.templates, 'orchestrator_webapp.md');
     expect(existsSync(templatePath)).toBe(true);
   });
 

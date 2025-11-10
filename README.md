@@ -314,8 +314,20 @@ dev cao agent create
 # With custom name
 dev cao agent create my_orchestrator
 
-# With template
-dev cao agent create db_specialist --template specialist
+# Web app orchestrator (default)
+dev cao agent create --template orchestrator_webapp
+
+# Mobile app orchestrator
+dev cao agent create --template orchestrator_mobile
+
+# Serverless Lambda orchestrator
+dev cao agent create --template orchestrator_lambda
+
+# Microservices orchestrator
+dev cao agent create --template orchestrator_microservices
+
+# Writing project orchestrator
+dev cao agent create --template orchestrator_writing
 
 # Skip prompts (use defaults)
 dev cao agent create my_agent --yes
@@ -323,8 +335,15 @@ dev cao agent create my_agent --yes
 
 Creates `.cao/agents/<name>.md` with a template agent configured for your project.
 
+**Available Templates:**
+- `orchestrator_webapp` - Web application (Next.js, React, etc.) - **default**
+- `orchestrator_mobile` - Mobile app (React Native, Flutter, iOS, Android)
+- `orchestrator_lambda` - Serverless with AWS Lambda
+- `orchestrator_microservices` - Microservices architecture
+- `orchestrator_writing` - Content creation and writing projects
+
 **Options:**
-- `-t, --template <template>` - Template to use (orchestrator, specialist)
+- `-t, --template <template>` - Template to use
 - `-y, --yes` - Skip prompts and use defaults
 
 ##### `dev cao agent list`
@@ -435,12 +454,22 @@ cd my-project
 # Install CAO and global agents (zweer_*)
 dev cao install
 
-# Create orchestrator
-dev cao agent create my_orchestrator
+# Create orchestrator based on your project type
 
-# Create specialized agents for your project
-dev cao agent create db_specialist --template specialist
-dev cao agent create api_expert --template specialist
+# For web app (default)
+dev cao agent create
+
+# For mobile app
+dev cao agent create --template orchestrator_mobile
+
+# For serverless Lambda
+dev cao agent create --template orchestrator_lambda
+
+# For microservices
+dev cao agent create --template orchestrator_microservices
+
+# For writing project
+dev cao agent create --template orchestrator_writing
 
 # Sync all local agents
 dev cao sync
