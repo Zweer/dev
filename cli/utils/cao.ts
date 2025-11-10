@@ -1,4 +1,4 @@
-import { exec } from 'node:child_process';
+import { exec, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const execAsync = promisify(exec);
@@ -7,29 +7,48 @@ export async function runCommand(command: string): Promise<{ stdout: string; std
   return execAsync(command);
 }
 
+export async function runInteractiveCommand(command: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, {
+      shell: true,
+      stdio: 'inherit',
+    });
+
+    child.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Command failed with exit code ${code}`));
+      }
+    });
+
+    child.on('error', reject);
+  });
+}
+
 export async function installCao(): Promise<void> {
   // Install tmux config
-  await runCommand(
+  await runInteractiveCommand(
     'curl -s https://raw.githubusercontent.com/awslabs/cli-agent-orchestrator/refs/heads/main/tmux-install.sh -o /tmp/tmux-install.sh && bash /tmp/tmux-install.sh || true',
   );
 
   // Install uv
-  await runCommand('curl -LsSf https://astral.sh/uv/install.sh | sh');
+  await runInteractiveCommand('curl -LsSf https://astral.sh/uv/install.sh | sh');
 
   // Install CAO
-  await runCommand(
+  await runInteractiveCommand(
     'uv tool install git+https://github.com/awslabs/cli-agent-orchestrator.git@main --upgrade',
   );
 }
 
 export async function installAgent(agentPath: string): Promise<void> {
-  await runCommand(`cao install "${agentPath}"`);
+  await runInteractiveCommand(`cao install "${agentPath}"`);
 }
 
 export async function launchAgent(agentName: string): Promise<void> {
-  await runCommand(`cao launch --agents ${agentName}`);
+  await runInteractiveCommand(`cao launch --agents ${agentName}`);
 }
 
 export async function startServer(): Promise<void> {
-  await runCommand('cao-server');
+  await runInteractiveCommand('cao-server');
 }

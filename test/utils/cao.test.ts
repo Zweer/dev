@@ -1,4 +1,5 @@
 import type { ChildProcess, ExecException } from 'node:child_process';
+import { EventEmitter } from 'node:events';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -15,6 +16,11 @@ vi.mock('node:child_process', () => ({
       return {} as ChildProcess;
     },
   ),
+  spawn: vi.fn(() => {
+    const mockProcess = new EventEmitter() as ChildProcess;
+    setTimeout(() => mockProcess.emit('close', 0), 0);
+    return mockProcess;
+  }),
 }));
 
 describe('cao utility', () => {

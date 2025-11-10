@@ -31,6 +31,15 @@ const execAsync = promisify(exec);
 describe('bootstrap command', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(exec).mockImplementation(
+      (
+        _cmd: string,
+        callback: (error: Error | null, result: { stdout: string; stderr: string }) => void,
+      ) => {
+        callback(null, { stdout: '', stderr: '' });
+        return {} as ReturnType<typeof exec>;
+      },
+    );
   });
 
   afterEach(() => {
