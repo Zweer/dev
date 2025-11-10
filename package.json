@@ -19,7 +19,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "check": "npm run clean && npm run test:coverage && npm run build && npm run lint && npm run clean",
-    "prepare": "husky",
+    "prepare": "[ \"$CI\" = \"true\" ] || [ \"$GITHUB_ACTIONS\" = \"true\" ] && echo 'Skipping husky' && exit 0 || husky",
     "clean": "rimraf --glob ./{cli,test}/**/*.{d.ts,js} ./vitest*.{d.ts,js}",
     "prebuild": "npm run clean",
     "build": "tsc",
