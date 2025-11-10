@@ -49,6 +49,10 @@
     "cli",
     "development"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zweer/dev"
+  },
   "author": "Zweer <n.olivieriachille@gmail.com>",
   "license": "MIT",
   "dependencies": {
