@@ -55,6 +55,7 @@ export const bootstrap = new Command()
           'lint:format': 'biome check --write',
           'lint:lockfile': 'lockfile-lint --path package-lock.json',
           'lint:engines': 'ls-engines',
+          'lint:package': 'npmPkgJsonLint .',
           'lint:publish': 'publint --strict',
           test: 'vitest run',
           'test:coverage': 'vitest run --coverage',
@@ -99,6 +100,8 @@ export const bootstrap = new Command()
           'lint-staged': '^16.2.6',
           'lockfile-lint': '^4.14.1',
           'ls-engines': '^0.9.3',
+          'npm-package-json-lint': '^8.0.0',
+          'npm-package-json-lint-config-default': '^7.0.1',
           publint: '^0.3.15',
           rimraf: '^6.1.0',
           'semantic-release': '^25.0.2',
@@ -263,6 +266,50 @@ indent_style = tab
 `;
 
       await writeFile('.editorconfig', editorconfig);
+
+      // Create .npmpackagejsonlintrc.json
+      const npmPackageJsonLintrc = {
+        rules: {
+          'require-author': 'error',
+          'require-description': 'error',
+          'require-engines': 'error',
+          'require-license': 'error',
+          'require-name': 'error',
+          'require-repository': 'error',
+          'require-version': 'error',
+          'require-bugs': 'error',
+          'require-homepage': 'error',
+          'require-keywords': 'error',
+          'bin-type': 'error',
+          'config-type': 'error',
+          'description-type': 'error',
+          'devDependencies-type': 'error',
+          'directories-type': 'error',
+          'engines-type': 'error',
+          'files-type': 'error',
+          'homepage-type': 'error',
+          'keywords-type': 'error',
+          'license-type': 'error',
+          'main-type': 'error',
+          'man-type': 'error',
+          'name-type': 'error',
+          'preferGlobal-type': 'error',
+          'private-type': 'error',
+          'repository-type': 'error',
+          'scripts-type': 'error',
+          'version-type': 'error',
+          'valid-values-author': ['error', [answers.author]],
+          'valid-values-private': ['error', [false]],
+          'no-restricted-dependencies': ['error', ['gulping-npm-package-json-lint']],
+          'no-restricted-pre-release-dependencies': ['error', ['gulping-npm-package-json-lint']],
+          'no-restricted-devDependencies': ['error', ['gulping-npm-package-json-lint']],
+          'no-restricted-pre-release-devDependencies': ['error', ['gulping-npm-package-json-lint']],
+          'name-format': 'error',
+          'version-format': 'error',
+        },
+      };
+
+      await writeFile('.npmpackagejsonlintrc.json', JSON.stringify(npmPackageJsonLintrc, null, 2));
 
       // Create directories
       await mkdir('src', { recursive: true });

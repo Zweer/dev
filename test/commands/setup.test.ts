@@ -184,6 +184,20 @@ describe('setup command', () => {
     expect(writeFile).toHaveBeenCalledWith('.editorconfig', expect.stringContaining('utf-8'));
   });
 
+  it('should create .npmpackagejsonlintrc.json if not exists', async () => {
+    vi.mocked(access).mockImplementation(async (path) => {
+      if (path === '.npmpackagejsonlintrc.json') throw new Error('not found');
+      return undefined;
+    });
+
+    await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
+
+    expect(writeFile).toHaveBeenCalledWith(
+      '.npmpackagejsonlintrc.json',
+      expect.stringContaining('require-author'),
+    );
+  });
+
   it('should create .husky directory', async () => {
     await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
 

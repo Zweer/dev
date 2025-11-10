@@ -108,6 +108,17 @@ describe('bootstrap command', () => {
     expect(writeFile).toHaveBeenCalledWith('.editorconfig', expect.stringContaining('utf-8'));
   });
 
+  it('should create .npmpackagejsonlintrc.json', async () => {
+    vi.mocked(execAsync).mockResolvedValue({ stdout: '', stderr: '' });
+
+    await bootstrap.parseAsync(['node', 'test', '--yes'], { from: 'user' });
+
+    expect(writeFile).toHaveBeenCalledWith(
+      '.npmpackagejsonlintrc.json',
+      expect.stringContaining('require-author'),
+    );
+  });
+
   it('should create directories', async () => {
     vi.mocked(execAsync).mockResolvedValue({ stdout: '', stderr: '' });
 
