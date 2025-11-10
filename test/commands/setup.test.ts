@@ -57,7 +57,7 @@ describe('setup command', () => {
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
     expect(writeCall).toBeDefined();
 
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
     expect(pkg.devDependencies).toHaveProperty('@biomejs/biome');
     expect(pkg.devDependencies).toHaveProperty('typescript');
     expect(pkg.devDependencies).toHaveProperty('vitest');
@@ -69,7 +69,7 @@ describe('setup command', () => {
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
     expect(writeCall).toBeDefined();
 
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
     expect(pkg.scripts).toHaveProperty('lint');
     expect(pkg.scripts).toHaveProperty('test');
     expect(pkg.scripts).toHaveProperty('build');
@@ -79,7 +79,7 @@ describe('setup command', () => {
     await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
 
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
 
     expect(pkg.engines).toEqual({ node: '>= 20.17' });
   });
@@ -88,7 +88,7 @@ describe('setup command', () => {
     await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
 
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
 
     expect(pkg.publishConfig).toEqual({ access: 'public', provenance: true });
   });
@@ -97,7 +97,7 @@ describe('setup command', () => {
     await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
 
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
 
     expect(pkg.release).toBeDefined();
     expect(pkg.release.plugins).toContain('@semantic-release/commit-analyzer');
@@ -228,7 +228,7 @@ describe('setup command', () => {
     await setup.parseAsync(['node', 'test', '--yes'], { from: 'user' });
 
     const writeCall = vi.mocked(writeFile).mock.calls.find((call) => call[0] === 'package.json');
-    const pkg = JSON.parse(writeCall![1] as string);
+    const pkg = JSON.parse(writeCall?.[1] as string);
 
     expect(pkg.scripts.start).toBe('node index.js');
     expect(pkg.devDependencies.eslint).toBe('^8.0.0');

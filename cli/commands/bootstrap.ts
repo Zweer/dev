@@ -356,9 +356,9 @@ git update-index --again
       spinner.succeed(chalk.green('✓ Project bootstrapped successfully!'));
 
       console.log('\nNext steps:');
-      console.log(chalk.cyan('  npm test') + ' - Run tests');
-      console.log(chalk.cyan('  npm run build') + ' - Build the project');
-      console.log(chalk.cyan('  npm run lint') + ' - Lint the code');
+      console.log(`${chalk.cyan('  npm test')} - Run tests`);
+      console.log(`${chalk.cyan('  npm run build')} - Build the project`);
+      console.log(`${chalk.cyan('  npm run lint')} - Lint the code`);
     } catch (error) {
       spinner.fail(chalk.red('Failed to bootstrap project'));
       console.error(error);
