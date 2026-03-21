@@ -1,90 +1,52 @@
 {
   "name": "@zweer/dev",
-  "version": "1.3.0",
-  "description": "Shared configurations & AI agents for software projects",
-  "keywords": [
-    "ai",
-    "agents",
-    "cao",
-    "cli",
-    "development"
-  ],
+  "version": "2.0.0",
+  "description": "Shared configurations, golden configs & Kiro AI templates for software projects",
+  "keywords": ["cli", "development", "kiro", "configs", "tooling"],
   "homepage": "https://github.com/Zweer/dev#readme",
-  "bugs": {
-    "url": "https://github.com/Zweer/dev/issues"
-  },
+  "bugs": { "url": "https://github.com/Zweer/dev/issues" },
   "license": "MIT",
   "author": "Zweer <n.olivieriachille@gmail.com>",
-  "files": [
-    "cli/**/*.js",
-    "cli/**/*.d.ts",
-    "agents",
-    "templates"
-  ],
-  "bin": "./cli/index.js",
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      "@semantic-release/git"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Zweer/dev.git"
-  },
+  "files": ["dist/**/*", "configs/**/*", "kiro/**/*", "workflows/**/*"],
+  "bin": "./dist/cli/index.js",
+  "repository": { "type": "git", "url": "git+https://github.com/Zweer/dev.git" },
   "type": "module",
   "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
     "lint": "concurrently npm:lint:* --prefixColors auto",
-    "lint:format": "biome check --write",
-    "lint:lockfile": "lockfile-lint --path package-lock.json",
     "lint:engines": "ls-engines",
+    "lint:format": "biome check --write",
+    "lint:lockfile": "lockfile-lint",
     "lint:package": "npmPkgJsonLint .",
-    "lint:publish": "publint --strict",
+    "lint:sort_package": "sort-package-json \"package.json\"",
+    "lint:typecheck": "tsc --noEmit",
+    "prepare": "lefthook install",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "check": "npm run clean && npm run test:coverage && npm run build && npm run lint && npm run clean",
-    "prepare": "[ \"$CI\" = \"true\" ] || [ \"$GITHUB_ACTIONS\" = \"true\" ] && echo 'Skipping husky' && exit 0 || husky",
-    "clean": "rimraf --glob ./{cli,test}/**/*.{d.ts,js} ./vitest*.{d.ts,js}",
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "release": "semantic-release"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
-    "chalk": "^5.3.0",
-    "commander": "^12.1.0",
-    "inquirer": "^12.0.0",
-    "ora": "^8.1.1"
+    "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.4",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@biomejs/biome": "^2.4.7",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^24.10.0",
     "@vitest/coverage-v8": "^4.0.8",
     "concurrently": "^9.2.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lefthook": "^1.12.0",
     "lockfile-lint": "^4.14.1",
     "ls-engines": "^0.10.0",
     "npm-package-json-lint": "^9.0.0",
-    "npm-package-json-lint-config-default": "^8.0.1",
-    "publint": "^0.3.15",
     "rimraf": "^6.1.0",
-    "semantic-release": "^25.0.2",
+    "sort-package-json": "^3.6.1",
+    "tsdown": "^0.12.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.8"
   },
-  "engines": {
-    "node": ">= 20.17"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  }
+  "engines": { "node": ">= 22" },
+  "publishConfig": { "access": "public", "provenance": true }
 }

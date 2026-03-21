@@ -1,0 +1,31 @@
+{
+  "name": "{{name}}",
+  "version": "0.0.0",
+  "description": "{{description}}",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "lint": "concurrently npm:lint:* --prefixColors auto",
+    "lint:engines": "ls-engines",
+    "lint:format": "biome check --write",
+    "lint:lockfile": "lockfile-lint",
+    "lint:package": "npmPkgJsonLint .",
+    "lint:sort_package": "sort-package-json \"package.json\"",
+    "lint:typecheck": "tsc --noEmit",
+    "prepare": "lefthook install",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "{{author}}",
+  "license": "MIT",
+  "engines": { "node": ">= 22" },
+  "publishConfig": { "access": "public", "provenance": true },
+  "devDependencies": {}
+}

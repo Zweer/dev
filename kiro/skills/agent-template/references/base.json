@@ -1,0 +1,30 @@
+{
+  "name": "dev",
+  "description": "Development agent for __PROJECT_NAME__",
+  "prompt": "file://../prompts/dev.md",
+  "resources": [
+    "file://README.md",
+    "file://.kiro/specs/**/*.md",
+    "file://.kiro/steering/**/*.md"
+  ],
+  "tools": [
+    "read", "write", "shell", "grep", "glob",
+    "web_search", "web_fetch", "introspect", "thinking", "code"
+  ],
+  "allowedTools": [
+    "read", "shell", "grep", "glob",
+    "web_search", "web_fetch", "introspect", "thinking", "code"
+  ],
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": ["__PROJECT_SPECIFIC__"]
+    },
+    "shell": {
+      "autoAllowReadonly": true,
+      "deniedCommands": [
+        ".*git commit.*", ".*git push.*",
+        ".*git tag .*", ".*npm publish.*"
+      ]
+    }
+  }
+}

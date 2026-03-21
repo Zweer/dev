@@ -1,14 +1,12 @@
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename: string = fileURLToPath(import.meta.url);
+const __dirname: string = dirname(__filename);
 
-export const paths = {
-  // Root del pacchetto @zweer/dev
+export const paths: { root: string; configs: string; kiro: string; workflows: string } = {
   root: join(__dirname, '../..'),
-
-  // Cartelle del pacchetto
-  agents: join(__dirname, '../../agents'),
-  templates: join(__dirname, '../../templates'),
+  configs: join(__dirname, '../../configs'),
+  kiro: join(__dirname, '../../kiro'),
+  workflows: join(__dirname, '../../workflows'),
 };

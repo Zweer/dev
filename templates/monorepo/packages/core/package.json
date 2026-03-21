@@ -1,0 +1,22 @@
+{
+  "name": "{{scope}}/core",
+  "version": "0.0.0",
+  "description": "Core package",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "keywords": [],
+  "author": "{{author}}",
+  "license": "MIT",
+  "homepage": "{{homepage}}",
+  "bugs": { "url": "{{bugs}}" },
+  "repository": {
+    "type": "git",
+    "url": "{{repository}}",
+    "directory": "packages/core"
+  },
+  "engines": { "node": ">= 22" }
+}

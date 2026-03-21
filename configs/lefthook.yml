@@ -1,0 +1,38 @@
+pre-commit:
+  piped: true
+  commands:
+    biome:
+      glob: "*.{ts,json,yaml,md,css,html}"
+      run: npx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+      priority: 1
+    lockfile:
+      glob: "package-lock.json"
+      run: npx lockfile-lint
+      priority: 1
+    package-lint:
+      glob: "package.json"
+      run: npx npmPkgJsonLint .
+      priority: 1
+    package-sort:
+      glob: "package.json"
+      run: npx sort-package-json "package.json"
+      stage_fixed: true
+      priority: 1
+    build:
+      glob: "*.ts"
+      run: npm run build
+      priority: 2
+    typecheck:
+      glob: "*.ts"
+      run: tsc --noEmit
+      priority: 3
+    test:
+      glob: "*.ts"
+      run: npx vitest run --reporter=dot
+      priority: 3
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx --no -- commitlint --edit {1}
