@@ -7,16 +7,22 @@
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "{{author}}",
   "license": "MIT",
   "homepage": "{{homepage}}",
-  "bugs": { "url": "{{bugs}}" },
+  "bugs": {
+    "url": "{{bugs}}"
+  },
   "repository": {
     "type": "git",
     "url": "{{repository}}",
     "directory": "packages/core"
   },
-  "engines": { "node": ">= 22" }
+  "engines": {
+    "node": ">= 22"
+  }
 }

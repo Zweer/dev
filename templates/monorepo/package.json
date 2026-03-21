@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "{{description}}",
   "type": "module",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf packages/*/dist",
@@ -21,6 +23,8 @@
   "keywords": [],
   "author": "{{author}}",
   "license": "MIT",
-  "engines": { "node": ">= 22" },
+  "engines": {
+    "node": ">= 22"
+  },
   "devDependencies": {}
 }

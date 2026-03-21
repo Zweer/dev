@@ -7,7 +7,9 @@
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf dist",
@@ -25,7 +27,12 @@
   "keywords": [],
   "author": "{{author}}",
   "license": "MIT",
-  "engines": { "node": ">= 22" },
-  "publishConfig": { "access": "public", "provenance": true },
+  "engines": {
+    "node": ">= 22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "devDependencies": {}
 }

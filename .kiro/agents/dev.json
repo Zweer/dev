@@ -2,38 +2,59 @@
   "name": "dev",
   "description": "Agent for @zweer/dev - Shared configurations, golden configs & Kiro AI templates",
   "prompt": "file://../prompts/dev.md",
-  "resources": [
-    "file://README.md",
-    "file://.kiro/specs/**/*.md",
-    "file://.kiro/steering/**/*.md"
-  ],
+  "resources": ["file://README.md", "file://.kiro/specs/**/*.md", "file://.kiro/steering/**/*.md"],
   "tools": [
-    "read", "write", "shell", "grep", "glob",
-    "web_search", "web_fetch", "introspect", "thinking", "code"
+    "read",
+    "write",
+    "shell",
+    "grep",
+    "glob",
+    "web_search",
+    "web_fetch",
+    "introspect",
+    "thinking",
+    "code"
   ],
   "allowedTools": [
-    "read", "shell", "grep", "glob",
-    "web_search", "web_fetch", "introspect", "thinking", "code"
+    "read",
+    "shell",
+    "grep",
+    "glob",
+    "web_search",
+    "web_fetch",
+    "introspect",
+    "thinking",
+    "code"
   ],
   "toolsSettings": {
     "write": {
       "allowedPaths": [
-        ".kiro/**", ".github/**",
-        "cli/**", "configs/**", "kiro/**", "workflows/**", "templates/**",
-        "README.md", "CHANGELOG.md",
-        "package.json", "package-lock.json",
-        "tsconfig.json", "tsdown.config.ts", "vitest.config.ts",
-        "biome.json", "lefthook.yml", "commitlint.config.ts",
-        ".editorconfig", ".gitignore",
-        ".npmpackagejsonlintrc.json", ".lockfile-lintrc.json"
+        ".kiro/**",
+        ".github/**",
+        "cli/**",
+        "configs/**",
+        "kiro/**",
+        "workflows/**",
+        "templates/**",
+        "README.md",
+        "CHANGELOG.md",
+        "package.json",
+        "package-lock.json",
+        "tsconfig.json",
+        "tsdown.config.ts",
+        "vitest.config.ts",
+        "biome.json",
+        "lefthook.yml",
+        "commitlint.config.ts",
+        ".editorconfig",
+        ".gitignore",
+        ".npmpackagejsonlintrc.json",
+        ".lockfile-lintrc.json"
       ]
     },
     "shell": {
       "autoAllowReadonly": true,
-      "deniedCommands": [
-        ".*git commit.*", ".*git push.*",
-        ".*git tag .*", ".*npm publish.*"
-      ]
+      "deniedCommands": [".*git commit.*", ".*git push.*", ".*git tag .*", ".*npm publish.*"]
     }
   }
 }

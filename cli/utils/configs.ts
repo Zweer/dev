@@ -1,4 +1,4 @@
-import { access, copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { access, copyFile, mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { paths } from './paths.js';
@@ -18,7 +18,7 @@ export interface ConfigFile {
 }
 
 export const CONFIG_FILES: ConfigFile[] = [
-  { src: 'biome.json', dest: 'biome.json' },
+  { src: '_biome.json', dest: 'biome.json' },
   { src: 'editorconfig', dest: '.editorconfig' },
   { src: 'commitlint.config.ts', dest: 'commitlint.config.ts' },
   { src: 'lefthook.yml', dest: 'lefthook.yml' },
@@ -36,7 +36,10 @@ export async function copyConfig(file: ConfigFile, targetDir: string): Promise<b
   return true;
 }
 
-export async function copyWorkflows(tier: 'base' | 'library' | 'docs', targetDir: string): Promise<void> {
+export async function copyWorkflows(
+  tier: 'base' | 'library' | 'docs',
+  targetDir: string,
+): Promise<void> {
   const srcDir = join(paths.workflows, tier);
   const destDir = join(targetDir, '.github/workflows');
   await mkdir(destDir, { recursive: true });
