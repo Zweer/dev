@@ -7,8 +7,6 @@ updates:
       day: monday
       time: "03:00"
     open-pull-requests-limit: 10
-    reviewers:
-      - zweer
     commit-message:
       prefix: "perf"
       prefix-development: "chore"

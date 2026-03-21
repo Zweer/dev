@@ -45,9 +45,11 @@ export async function copyWorkflows(
   await mkdir(destDir, { recursive: true });
 
   for (const file of await readdir(srcDir)) {
-    const dest = join(destDir, file);
-    if (!(await fileExists(dest))) {
-      await copyFile(join(srcDir, file), dest);
+    // dependabot.yml goes to .github/, not .github/workflows/
+    const destFile =
+      file === 'dependabot.yml' ? join(targetDir, '.github', file) : join(destDir, file);
+    if (!(await fileExists(destFile))) {
+      await copyFile(join(srcDir, file), destFile);
     }
   }
 }
