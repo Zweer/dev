@@ -78,6 +78,12 @@ describe('copyWorkflows', () => {
     expect(await fileExists(join(wfDir, 'dependabot-auto-merge.yml'))).toBe(true);
   });
 
+  it('should place dependabot.yml in .github/ not .github/workflows/', async () => {
+    await copyWorkflows('base', tempDir);
+    expect(await fileExists(join(tempDir, '.github/dependabot.yml'))).toBe(true);
+    expect(await fileExists(join(tempDir, '.github/workflows/dependabot.yml'))).toBe(false);
+  });
+
   it('should not overwrite existing workflows', async () => {
     const wfDir = join(tempDir, '.github/workflows');
     const { mkdir } = await import('node:fs/promises');
@@ -106,5 +112,18 @@ describe('mergePackageJson', () => {
     expect(pkg.scripts.existing).toBe('true');
     expect(pkg.scripts.build).toBe('tsdown');
     expect(pkg.devDependencies.vitest).toBe('^4.0.0');
+  });
+
+  it('should handle partial overrides', async () => {
+    await writeFile(
+      join(tempDir, 'package.json'),
+      JSON.stringify({ name: 'test', scripts: { a: '1' }, devDependencies: { b: '2' } }),
+    );
+
+    await mergePackageJson(tempDir, {});
+
+    const pkg = JSON.parse(await readFile(join(tempDir, 'package.json'), 'utf-8'));
+    expect(pkg.scripts.a).toBe('1');
+    expect(pkg.devDependencies.b).toBe('2');
   });
 });

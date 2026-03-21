@@ -1,5 +1,5 @@
 import { exec } from 'node:child_process';
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
 
@@ -7,6 +7,7 @@ import { Command } from '@commander-js/extra-typings';
 
 import { CONFIG_FILES, copyConfig, copyWorkflows } from '../utils/configs.js';
 import { paths } from '../utils/paths.js';
+import { copyTemplate } from '../utils/templates.js';
 
 const execAsync = promisify(exec);
 
@@ -29,40 +30,6 @@ const DEV_DEPENDENCIES: Record<string, string> = {
   vitest: '^4.1.0',
 };
 
-interface TemplateVars {
-  name: string;
-  scope: string;
-  description: string;
-  author: string;
-  homepage: string;
-  bugs: string;
-  repository: string;
-}
-
-async function copyTemplate(
-  templateDir: string,
-  targetDir: string,
-  vars: TemplateVars,
-): Promise<void> {
-  const entries = await readdir(templateDir, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const src = join(templateDir, entry.name);
-    const dest = join(targetDir, entry.name);
-
-    if (entry.isDirectory()) {
-      await mkdir(dest, { recursive: true });
-      await copyTemplate(src, dest, vars);
-    } else {
-      let content = await readFile(src, 'utf-8');
-      for (const [key, value] of Object.entries(vars)) {
-        content = content.replaceAll(`{{${key}}}`, value);
-      }
-      await writeFile(dest, content);
-    }
-  }
-}
-
 export const bootstrap = new Command()
   .name('bootstrap')
   .description('Bootstrap a new project with standard configuration')
@@ -73,7 +40,7 @@ export const bootstrap = new Command()
     const repoName = name.includes('/') ? name.split('/')[1] : name;
     const templateDir = join(paths.root, 'templates', options.type);
 
-    const vars: TemplateVars = {
+    const vars: Record<string, string> = {
       name,
       scope,
       description: '',
