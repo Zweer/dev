@@ -6,6 +6,7 @@ import { CONFIG_FILES, copyConfig, copyWorkflows, fileExists } from '../utils/co
 
 const DEV_DEPENDENCIES: Record<string, string> = {
   '@biomejs/biome': '^2.4.8',
+  bonvoy: '^0.13.1',
   '@commitlint/cli': '^20.5.0',
   '@commitlint/config-conventional': '^20.5.0',
   '@tsconfig/node22': '^22.0.5',
