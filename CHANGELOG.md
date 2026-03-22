@@ -1,6 +1,43 @@
 # [1.3.0](https://github.com/Zweer/dev/compare/v1.2.0...v1.3.0) (2025-11-10)
 
 
+
+## [1.3.0] - 2026-03-22
+
+### 💥 Breaking Changes
+
+- feat!: :boom: v2 redesign — replace CAO with Kiro-native architecture
+
+### ### chore
+
+- chore(cli): :recycle: read package metadata dynamically and bump GitHub Actions
+- chore(workflows): :wrench: fix dependabot prefixes and add lockfile workflow
+- chore: :arrow_up: update all deps to latest, fix biome and lint issues
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#47)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#45)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#43)
+- chore(deps-dev): bump @biomejs/biome (#40)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#37)
+- chore(deps-dev): bump @biomejs/biome (#34)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#30)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#25)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#23)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#20)
+- chore(deps-dev): bump ls-engines in the development-dependencies group (#19)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#17)
+- chore(deps-dev): bump publint in the development-dependencies group (#14)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#12)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#11)
+- chore(deps-dev): bump the development-dependencies group with 7 updates (#9)
+
+### ### ci
+
+- ci(npm): :construction_worker: add npm release workflow
+
+### ### test
+
+- test(utils): :white_check_mark: achieve 100% coverage on utility modules
+
 ### Features
 
 * **cli:** :sparkles: Added commands to view and uninstall agents ([d131c3a](https://github.com/Zweer/dev/commit/d131c3a7ae5021422d2140283056dbf8bcc43131))
