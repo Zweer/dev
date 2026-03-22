@@ -6,7 +6,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'json-summary'],
       include: ['cli/**/*.ts'],
-      exclude: ['**/index.ts', '**/types.ts', 'cli/commands/**'],
+      exclude: ['**/index.ts', '**/types.ts'],
     },
   },
 });
