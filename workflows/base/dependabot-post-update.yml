@@ -1,4 +1,4 @@
-name: Dependabot Lockfile Fix
+name: Dependabot Post-Update
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  fix-lockfile:
+  post-update:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -21,14 +21,18 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: lts/*
+          node-version: 20
 
       - run: npm i --package-lock-only
 
-      - name: Commit updated lockfile
+      - run: npx @biomejs/biome migrate --write
+
+      - run: npx sort-package-json "package.json" "packages/*/package.json"
+
+      - name: Commit changes
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add package-lock.json
-          git diff --cached --quiet || git commit -m "fix: :lock: regenerate lockfile with Node 20"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: :wrench: post-update fixes (lockfile, biome migrate, sort)"
           git push

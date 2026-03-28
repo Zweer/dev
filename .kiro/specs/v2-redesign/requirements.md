@@ -152,7 +152,8 @@ The current repo is heavily conditioned by CAO (CLI Agent Orchestrator), which i
 │   │   ├── pr.yml
 │   │   ├── npm.yml
 │   │   ├── security.yml
-│   │   └── dependabot-auto-merge.yml
+│   │   ├── dependabot-auto-merge.yml
+│   │   └── dependabot-post-update.yml
 │   └── dependabot.yml
 │
 ├── package.json
@@ -404,7 +405,7 @@ export default defineConfig({
 **Rationale for copy-paste**: Reusable workflows have limitations (can't customize steps, must pass secrets explicitly, source repo must be public or same org). Copy-paste gives full control and projects can modify.
 
 **Workflow categories**:
-- **Base** (always): ci.yml, pr.yml, security.yml, dependabot-auto-merge.yml
+- **Base** (always): ci.yml, pr.yml, security.yml, dependabot-auto-merge.yml, dependabot-post-update.yml
 - **Library** (npm publish): npm.yml
 - **Docs** (VitePress): docs.yml
 

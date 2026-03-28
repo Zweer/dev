@@ -82,7 +82,7 @@ The `zweer-setup` agent generates `.kiro/` config for any project:
 
 | Tier | Workflows | When |
 |------|-----------|------|
-| Base | ci, pr, security, dependabot-auto-merge | Always |
+| Base | ci, pr, security, dependabot-auto-merge, dependabot-post-update | Always |
 | Library | npm release | npm packages |
 | Docs | VitePress deploy | Projects with docs/ |
 
