@@ -2,6 +2,21 @@
 
 
 
+
+## [2.0.0] - 2026-03-28
+
+### ✨ Features
+
+- feat(workflows): :sparkles: replace dependabot-lockfile with modular post-update workflow
+
+### ### chore
+
+- chore(vitest): :wrench: include CLI commands in coverage
+
+### ### test
+
+- test(cli): :white_check_mark: add CLI command tests and MIT license
+
 ## [1.3.0] - 2026-03-22
 
 ### 💥 Breaking Changes
