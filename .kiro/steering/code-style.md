@@ -1,5 +1,12 @@
 # Code Style & Best Practices
 
+## Language Policy
+
+**TypeScript is the default and only language** unless the project explicitly declares otherwise.
+- Never write Python, Dart, Go, or any other language unless the project's stack explicitly includes it
+- If unsure, ask — don't assume a secondary language is needed
+- When a project does declare multiple languages, each has its own `code-style-{language}.md` steering file
+
 ## TypeScript
 
 ### Strict Mode
@@ -64,6 +71,7 @@ export class MyClass {}
 ## Dependencies
 
 ### Minimal Dependencies
+- **Search npm before writing custom code** — if a well-maintained package exists, use it
 - Only add dependencies when absolutely necessary
 - Prefer native Node.js APIs when possible
 - Use `^` for dependencies (allow minor/patch updates)

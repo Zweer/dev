@@ -5,16 +5,26 @@ description: Generate .kiro/steering/ files for a project. Use when setting up s
 
 # Steering Templates
 
-Generate the 5 standard steering files under `.kiro/steering/`.
+Generate the `.kiro/steering/` files for a project.
 
-## Files
+## Core Files (always generated)
 
 All projects get these 5 files:
-1. `code-style.md` — TypeScript conventions, naming, error handling
+1. `code-style.md` — TypeScript conventions, naming, error handling, language policy
 2. `build-tooling.md` — Stack reference (tsdown, biome, lefthook, npm)
 3. `testing.md` — Vitest, coverage, mocking rules
 4. `interaction.md` — Agent behavior (interview, plan mode, no git commit)
 5. `commit-conventions.md` — Conventional commits + gitmoji text codes
+
+## Language-Specific Files (opt-in)
+
+Only generate these when the project explicitly declares the language in its stack:
+- `code-style-python.md` — Python conventions (uv, ruff, type hints, naming)
+- `code-style-flutter.md` — Flutter/Dart conventions (widgets, state management)
+- `build-tooling-python.md` — Python build stack (uv, ruff, pyproject.toml)
+- `testing-python.md` — pytest, coverage, fixtures
+
+**Ask the user** which languages the project uses. Never assume a secondary language.
 
 ## Customization
 
