@@ -3,6 +3,17 @@
 
 
 
+
+## [2.1.0] - 2026-04-01
+
+### ✨ Features
+
+- feat(kiro): :sparkles: add language policy and search-first principle to steering
+
+### ### chore
+
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#51)
+
 ## [2.0.0] - 2026-03-28
 
 ### ✨ Features
