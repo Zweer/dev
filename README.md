@@ -73,10 +73,35 @@ For web apps (Next.js, SvelteKit, etc.), use the framework's own scaffolding too
 
 The `zweer-setup` agent generates `.kiro/` config for any project:
 
-- **5 steering files**: code-style, build-tooling, testing, interaction, commit-conventions
+- **5+ steering files**: code-style, build-tooling, testing, interaction, commit-conventions (+ web-nextjs, web-deploy for web apps)
 - **Agent config**: Tailored `dev.json` with project-specific write paths
 - **Prompt**: Project-specific system prompt
-- **Skills**: Monorepo scaffolding, etc.
+- **Skills**: Monorepo scaffolding, workflow skills, spec templates
+
+### Workflow Skills
+
+Trigger these in chat to switch the agent's cognitive mode:
+
+| Trigger | Mode | Use when |
+|---------|------|----------|
+| `plan product` | Product Owner | Starting a feature, vague requirements |
+| `plan eng` | Tech Lead | Architecture, failure modes, test matrix |
+| `code review` | Paranoid Reviewer | After implementation, before committing |
+| `qa` | QA Lead | Verify changes, health score |
+| `ship prep` | Release Engineer | Build/lint/test checklist + commit message |
+| `retro` | Engineering Manager | Analyze what happened (git history) |
+| `new spec` | Spec Author | Create structured spec from template |
+
+Typical flow: `plan product` → `plan eng` → implement → `code review` → `qa` → `ship prep`
+
+### Hooks
+
+| Hook | Trigger | What it does |
+|------|---------|-------------|
+| `safety-gate` | `preToolUse` | Blocks git commit/push, npm publish, destructive ops |
+| `barrel-export` | `fileCreated` | Auto-updates barrel index.ts in monorepo packages |
+| `context-injection` | `fileEdited` | Loads relevant steering doc based on file type |
+| `post-task-summary` | `agentStop` | Summarizes changes + suggests commit message |
 
 ## Workflow Templates
 
