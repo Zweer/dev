@@ -16,6 +16,14 @@ All projects get these 5 files:
 4. `interaction.md` — Agent behavior (interview, plan mode, no git commit)
 5. `commit-conventions.md` — Conventional commits + gitmoji text codes
 
+## Web App Files (opt-in)
+
+Generate these when the project is a web application:
+- `web-nextjs.md` — Next.js conventions (App Router, Server Components, data fetching, components, Tailwind)
+- `web-deploy.md` — Vercel deploy conventions (environments, serverless, caching, monorepo)
+
+Only include if the project uses Next.js + Vercel. **Ask the user** if unsure.
+
 ## Language-Specific Files (opt-in)
 
 Only generate these when the project explicitly declares the language in its stack:
@@ -39,3 +47,5 @@ Adapt each file to the project:
 - Review `references/testing.md` for the testing template
 - Review `references/interaction.md` for the interaction template
 - Review `references/commit-conventions.md` for the commit conventions template
+- Review `references/web-nextjs.md` for the Next.js conventions template
+- Review `references/web-deploy.md` for the Vercel deploy template

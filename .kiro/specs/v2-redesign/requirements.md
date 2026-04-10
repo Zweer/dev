@@ -88,7 +88,14 @@ The current repo is heavily conditioned by CAO (CLI Agent Orchestrator), which i
 │   │   ├── build-tooling.md
 │   │   ├── testing.md
 │   │   ├── interaction.md
-│   │   └── commit-conventions.md
+│   │   ├── commit-conventions.md
+│   │   ├── web-nextjs.md             # Opt-in: Next.js conventions
+│   │   └── web-deploy.md             # Opt-in: Vercel deploy conventions
+│   ├── hooks/                        # Kiro hook templates (copied to target projects)
+│   │   ├── safety-gate.md
+│   │   ├── barrel-export.md
+│   │   ├── context-injection.md
+│   │   └── post-task-summary.md
 │   └── skills/                       # Skills for the zweer-setup agent
 │       ├── agent-template/
 │       │   ├── SKILL.md
@@ -108,11 +115,19 @@ The current repo is heavily conditioned by CAO (CLI Agent Orchestrator), which i
 │       │       ├── build-tooling.md
 │       │       ├── testing.md
 │       │       ├── interaction.md
-│       │       └── commit-conventions.md
-│       └── skill-templates/
-│           ├── SKILL.md
-│           └── references/
-│               └── new-package.md
+│       │       ├── commit-conventions.md
+│       │       ├── web-nextjs.md
+│       │       └── web-deploy.md
+│       ├── skill-templates/
+│       │   ├── SKILL.md
+│       │   └── references/
+│       │       └── new-package.md
+│       ├── plan-product/
+│       │   └── SKILL.md
+│       ├── plan-eng/
+│       │   └── SKILL.md
+│       └── code-review/
+│           └── SKILL.md
 │
 ├── workflows/                        # GitHub Actions (copied to target projects)
 │   ├── base/                         # Always installed
@@ -454,8 +469,30 @@ The CLI command `dev init-kiro` installs the `zweer-setup` agent globally and in
 - `references/commit-conventions.md` — Conventional commits + gitmoji text codes
 
 #### skill-templates skill
-- `SKILL.md` — Available skills and when to include them
+- `SKILL.md` — Available skills and hooks, when to include them
 - `references/new-package.md` — Skill for scaffolding a new package in a monorepo
+
+#### Workflow skills (installed globally or per-project)
+
+##### plan-product
+Product thinking mode. Rethinks the problem before coding — redefines the request, proposes ideal vs pragmatic versions, identifies risks. Inspired by kstack/gstack's cognitive mode switching.
+
+##### plan-eng
+Engineering planning mode. ASCII architecture diagrams (mandatory), failure mode analysis, test matrix, implementation plan with acceptance criteria.
+
+##### code-review
+Paranoid code review. Checklist covering security (injection, auth, secrets), concurrency (races, idempotency), performance (N+1, pagination), resource management (leaks, orphans), error handling. Severity-classified findings with Impact + Fix.
+
+#### Kiro Hooks (`.kiro/hooks/`)
+
+Kiro hooks are NOT git hooks (lefthook handles pre-commit linting/testing). They operate during the AI agent's session in the IDE.
+
+| Hook | Trigger | Purpose |
+|------|---------|---------|
+| `safety-gate` | `preToolUse` (shell) | Block git commit/push, npm publish, destructive ops |
+| `barrel-export` | `fileCreated` | Auto-update barrel index.ts in monorepo packages |
+| `context-injection` | `fileEdited` | Load relevant steering doc based on file type |
+| `post-task-summary` | `agentStop` | Summarize changes + suggest commit message |
 
 ### 5.3 Skill Format (SKILL.md with references/)
 
@@ -497,6 +534,13 @@ Extracted and generalized from bonvoy and drop-coop steering:
 3. **testing.md** — Vitest, v8 coverage, when to mock vs not, AAA pattern, test naming, test structure, PGlite for DB tests where applicable
 4. **interaction.md** — Interview before implementing (for ambiguous requests), plan mode (for multi-step tasks), ASCII diagrams, context hygiene, agent never commits/pushes
 5. **commit-conventions.md** — Conventional commits with gitmoji text codes (`:sparkles:` not ✨), scope from `.vscode/settings.json`, detailed body always
+
+### 5.4b Web App Steering Files (opt-in)
+
+For Next.js + Vercel web app projects, the setup agent generates 2 additional steering files:
+
+6. **web-nextjs.md** — App Router conventions, Server Components, data fetching, component structure, Tailwind styling, environment variables
+7. **web-deploy.md** — Vercel deploy conventions (environments, serverless functions, caching, database pooling, monorepo setup, CI integration)
 
 ### 5.5 Agent Template (common structure)
 
