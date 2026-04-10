@@ -21,6 +21,18 @@ Engineering planning mode. ASCII architecture diagrams, failure mode analysis, t
 ### code-review (all projects)
 Paranoid code review. Checklist covering security, concurrency, performance, resource management, error handling. Severity-classified findings.
 
+### qa (all projects)
+Diff-aware QA. Reads git diff, identifies affected areas, verifies test coverage, produces health score 0-100.
+
+### retro (all projects)
+Engineering retrospective. Analyzes git history for commits, LOC, test ratio, hotspot files. Produces wins, improvements, and action items.
+
+### ship-prep (all projects)
+Pre-ship checklist. Verifies branch state, runs build/lint/tests, generates commit message. Does NOT commit or push.
+
+### spec-templates (all projects)
+Creates structured feature or bugfix specs from templates (requirements.md, design.md, tasks.md) with emoji lifecycle prefixes.
+
 ## Available Hooks
 
 ### safety-gate (all projects)
@@ -43,6 +55,10 @@ Paranoid code review. Checklist covering security, concurrency, performance, res
 | `plan-product` | Always (recommended) |
 | `plan-eng` | Always (recommended) |
 | `code-review` | Always (recommended) |
+| `qa` | Always (recommended) |
+| `retro` | Always (optional) |
+| `ship-prep` | Always (recommended) |
+| `spec-templates` | Always (recommended) |
 | `safety-gate` | Always |
 | `barrel-export` | Monorepo only |
 | `context-injection` | Always (recommended) |
