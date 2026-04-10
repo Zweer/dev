@@ -33,6 +33,11 @@ pre-commit:
       priority: 3
 
 commit-msg:
+  piped: true
   commands:
+    sanitize:
+      run: sed -i 's/[[:space:]]*$//' {1} && sed -i 's/^ \{1,2\}//' {1} && sed -i '/^$/N;/^\n$/d' {1}
+      priority: 1
     commitlint:
       run: npx --no -- commitlint --edit {1}
+      priority: 2
