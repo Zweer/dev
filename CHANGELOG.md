@@ -4,6 +4,17 @@
 
 
 
+
+## [2.2.0] - 2026-04-10
+
+### ✨ Features
+
+- feat(kiro): :sparkles: add workflow skills, hooks, and web app steering
+
+### ### chore
+
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#54)
+
 ## [2.1.0] - 2026-04-01
 
 ### ✨ Features
