@@ -120,6 +120,84 @@ Typical flow: `plan product` → `plan eng` → implement → `code review` → 
 - **@tsconfig/node22** (LTS)
 - **Copy** config distribution (not extends)
 
+## Shell Setup (Starship)
+
+Recommended prompt setup for all dev machines (bash on WSL/Ubuntu):
+
+### Install Starship
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+```
+
+### Install a Nerd Font
+
+On **Windows**: download a Nerd Font (e.g. JetBrainsMono) from https://www.nerdfonts.com/font-downloads, install it, then set it as the font in Windows Terminal settings.
+
+### Config (`~/.config/starship.toml`)
+
+```toml
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$custom\
+$cmd_duration\
+$status\
+$line_break\
+$character"""
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+
+[git_branch]
+format = "[$branch]($style) "
+style = "purple"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "red"
+
+[nodejs]
+format = "[node $version]($style) "
+style = "green"
+
+[custom.gh]
+command = "grep -A20 'github.com:' ${GH_CONFIG_DIR:-$HOME/.config/gh}/hosts.yml 2>/dev/null | grep '^\\s*user:' | head -1 | awk '{print $2}'"
+when = true
+format = "[gh:$output]($style) "
+style = "cyan"
+
+[cmd_duration]
+min_time = 2000
+format = "[took $duration]($style) "
+style = "yellow"
+
+[status]
+disabled = false
+format = "[$status]($style) "
+style = "red"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+```
+
+### What it shows
+
+| Module | Info |
+|--------|------|
+| `directory` | Full working directory path |
+| `git_branch` | Current branch |
+| `git_status` | Dirty/clean, ahead/behind |
+| `nodejs` | Active Node.js version (via nvm) |
+| `custom.gh` | Active GitHub account (from `gh` config) |
+| `cmd_duration` | Execution time (if > 2s) |
+| `status` | Exit code on error |
+
 ## Development
 
 ```bash
