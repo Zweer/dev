@@ -6,6 +6,36 @@
 
 
 
+
+## [2.3.1] - 2026-07-28
+
+### ✨ Features
+
+- feat: :sparkles: added the script to auto switch github accounts
+
+### ### chore
+
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#95)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#94)
+- chore(deps-dev): bump the development-dependencies group with 5 updates (#88)
+- chore(deps-dev): bump @biomejs/biome (#87)
+- chore(deps-dev): bump @biomejs/biome (#82)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#81)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#78)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#77)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#72)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#71)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#68)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#65)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#63)
+- chore(deps-dev): bump the development-dependencies group with 5 updates (#61)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#58)
+- chore(deps-dev): bump the development-dependencies group with 5 updates (#56)
+
+### 📚 Documentation
+
+- docs(readme): :memo: add Shell Setup section with Starship config
+
 ## [2.3.0] - 2026-04-10
 
 ### 🐛 Bug Fixes
