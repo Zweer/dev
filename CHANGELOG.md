@@ -7,6 +7,24 @@
 
 
 
+
+## [2.4.0] - 2026-11-13
+
+### 🐛 Bug Fixes
+
+- fix(deps): :bug: resolve all npm audit findings failing the Security Audit workflow (#118)
+
+### ### chore
+
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#114)
+- chore(deps-dev): bump @biomejs/biome (#112)
+- chore(deps-dev): bump the development-dependencies group with 3 updates (#109)
+- chore(deps-dev): bump @biomejs/biome (#106)
+- chore(deps-dev): bump the development-dependencies group with 4 updates (#102)
+- chore(deps-dev): bump the development-dependencies group with 2 updates (#99)
+- chore(deps-dev): bump @biomejs/biome (#98)
+- chore(deps-dev): bump @biomejs/biome (#96)
+
 ## [2.3.1] - 2026-07-28
 
 ### ✨ Features
